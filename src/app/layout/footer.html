@@ -1,0 +1,78 @@
+<footer class="site-footer">
+  <div class="container">
+    <div class="row g-5">
+      <div class="col-lg-4">
+        <a class="footer-brand" routerLink="/">
+          <app-crest [size]="48" />
+          <span>
+            <strong>{{ institution.shortName }}</strong>
+            <small>{{ institution.name }}</small>
+          </span>
+        </a>
+        <p class="mt-3 mb-2 footer-motto">“{{ institution.motto }}”</p>
+        <p class="footer-text">
+          Training competent, ethical and compassionate healthcare professionals since {{ institution.founded }}.
+          Programs accredited by {{ institution.regulator }}.
+        </p>
+        <div class="footer-social">
+          @for (s of institution.social; track s.label) {
+            <a [attr.href]="s.href" [attr.aria-label]="s.label"><i class="bi" [class]="s.icon"></i></a>
+          }
+        </div>
+      </div>
+
+      <div class="col-6 col-md-4 col-lg-2">
+        <h5 class="footer-heading">About NMTC</h5>
+        <ul class="footer-links">
+          <li><a routerLink="/about/vision-mission">Vision &amp; Mission</a></li>
+          <li><a routerLink="/about/history">History of NMTC</a></li>
+          <li><a routerLink="/about/affiliate-institutions">Affiliate Institutions</a></li>
+          <li><a routerLink="/careers">Careers</a></li>
+          <li><a routerLink="/contact">Contact Us</a></li>
+        </ul>
+      </div>
+
+      <div class="col-6 col-md-4 col-lg-2">
+        <h5 class="footer-heading">Academics</h5>
+        <ul class="footer-links">
+          <li><a routerLink="/academics/diploma-programs">Diploma Programs</a></li>
+          <li><a routerLink="/academics/certificate-programs">Certificate Programs</a></li>
+          <li><a routerLink="/academics/short-courses">Short Courses</a></li>
+          <li><a routerLink="/admissions/admission-process">Admission Process</a></li>
+          <li><a routerLink="/admissions/academic-calendars">Academic Calendars</a></li>
+        </ul>
+      </div>
+
+      <div class="col-6 col-md-4 col-lg-2">
+        <h5 class="footer-heading">Students</h5>
+        <ul class="footer-links">
+          <li><a [attr.href]="links.studentPortal">Student Portal</a></li>
+          <li><a [attr.href]="links.eLearning">E-Learning</a></li>
+          <li><a [attr.href]="links.library">Library</a></li>
+          <li><a routerLink="/students/student-life">Student Life</a></li>
+          <li><a routerLink="/students/graduation-ceremony">Graduation Ceremony</a></li>
+        </ul>
+      </div>
+
+      <div class="col-6 col-lg-2">
+        <h5 class="footer-heading">Get in Touch</h5>
+        <ul class="footer-contact">
+          <li><i class="bi bi-geo-alt"></i><span>{{ institution.address }}<br>{{ institution.city }}</span></li>
+          <li><i class="bi bi-telephone"></i><a [href]="'tel:' + institution.phone">{{ institution.phone }}</a></li>
+          <li><i class="bi bi-envelope"></i><a [href]="'mailto:' + institution.email">{{ institution.email }}</a></li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+  <div class="footer-bottom">
+    <div class="container d-flex flex-column flex-md-row justify-content-between gap-2">
+      <span>&copy; {{ year }} {{ institution.name }}. All rights reserved.</span>
+      <span class="footer-legal">
+        <a href="#">Privacy Policy</a>
+        <a href="#">Terms of Use</a>
+        <a href="#">Accessibility</a>
+      </span>
+    </div>
+  </div>
+</footer>

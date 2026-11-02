@@ -1,0 +1,92 @@
+<app-page-header title="Vision & Mission" [image]="images.clinician" [crumbs]="[{ label: 'About' }]"
+  subtitle="The purpose and principles that guide everything we do at NMTC." />
+
+<section class="section">
+  <div class="container">
+    <div class="row g-4">
+      <div class="col-lg-6" appReveal="left">
+        <div class="statement-card">
+          <span class="statement-icon"><i class="bi bi-eye"></i></span>
+          <span class="eyebrow">Our Vision</span>
+          <p class="statement-text">
+            To be a centre of excellence in health professions education, producing graduates who transform healthcare
+            locally and globally.
+          </p>
+        </div>
+      </div>
+      <div class="col-lg-6" appReveal="right">
+        <div class="statement-card statement-card-dark">
+          <span class="statement-icon"><i class="bi bi-bullseye"></i></span>
+          <span class="eyebrow eyebrow-light">Our Mission</span>
+          <p class="statement-text">
+            To train competent, ethical and compassionate healthcare professionals through quality education, clinical
+            practice, research and community service.
+          </p>
+        </div>
+      </div>
+    </div>
+
+    <div class="text-center mt-5 pt-3" appReveal>
+      <span class="eyebrow justify-content-center">Our Motto</span>
+      <p class="motto">{{ institution.motto }}</p>
+    </div>
+  </div>
+</section>
+
+<section class="section bg-tint">
+  <div class="container">
+    <div class="text-center mx-auto section-intro" appReveal>
+      <span class="eyebrow justify-content-center">Core Values</span>
+      <h2 class="section-title">The Values That Define Us</h2>
+    </div>
+    <div class="row g-4">
+      @for (v of values; track v.title; let i = $index) {
+        <div class="col-sm-6 col-lg-4" appReveal [revealDelay]="(i % 3) * 120">
+          <div class="feature-card h-100">
+            <span class="feature-icon"><i class="bi" [class]="v.icon"></i></span>
+            <h3>{{ v.title }}</h3>
+            <p>{{ v.text }}</p>
+          </div>
+        </div>
+      }
+    </div>
+  </div>
+</section>
+
+<section class="section">
+  <div class="container">
+    <div class="row g-5 align-items-center">
+      <div class="col-lg-6" appReveal="left">
+        <span class="eyebrow">Strategic Objectives</span>
+        <h2 class="section-title">How We Deliver on Our Mission</h2>
+        <ul class="check-list mt-4">
+          @for (o of objectives; track o) {
+            <li>{{ o }}</li>
+          }
+        </ul>
+      </div>
+      <div class="col-lg-6" appReveal="right">
+        <div class="rounded-image">
+          <img [src]="images.lecture" alt="Lecture in progress at NMTC" loading="lazy">
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="section bg-tint">
+  <div class="container">
+    <div class="quality-policy" appReveal="zoom">
+      <i class="bi bi-award"></i>
+      <div>
+        <h2 class="h3">Quality Policy Statement</h2>
+        <p class="mb-0">
+          NMTC is committed to delivering quality health professions training that meets the requirements of students,
+          regulators and employers, and to continually improving the effectiveness of our quality management system.
+        </p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<app-cta-band />

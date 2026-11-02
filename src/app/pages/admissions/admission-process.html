@@ -1,0 +1,126 @@
+<app-page-header title="Admission Process" [image]="images.study" [crumbs]="[{ label: 'Admissions' }]"
+  subtitle="Everything you need to know to join NMTC — from application to registration." />
+
+<section class="section">
+  <div class="container">
+    <div class="row g-5">
+      <div class="col-lg-8">
+        <div appReveal>
+          <span class="eyebrow">How to Apply</span>
+          <h2 class="section-title">Six Steps to Joining NMTC</h2>
+          <p class="text-body-secondary mb-5">
+            All applications are submitted online through the NMTC Application Portal. Follow the steps below to complete
+            your application.
+          </p>
+        </div>
+
+        <ol class="process-list">
+          @for (step of steps; track step.title; let i = $index) {
+            <li class="process-step" appReveal [revealDelay]="80">
+              <span class="process-number">{{ i + 1 }}</span>
+              <div>
+                <h3>{{ step.title }}</h3>
+                <p>{{ step.text }}</p>
+              </div>
+            </li>
+          }
+        </ol>
+      </div>
+
+      <aside class="col-lg-4">
+        <div class="sticky-lg-top sidebar-sticky">
+          <div class="sidebar-card sidebar-card-primary" appReveal="right">
+            <h3><i class="bi bi-pencil-square me-2"></i>Ready to Apply?</h3>
+            <p>Applications for the January 2027 intake are open.</p>
+            <a class="btn btn-accent w-100" [attr.href]="links.applicationPortal">Go to Application Portal</a>
+          </div>
+
+          <div class="sidebar-card" appReveal="right" [revealDelay]="120">
+            <h3><i class="bi bi-folder2-open me-2"></i>Documents Required</h3>
+            <ul class="check-list check-list-sm mb-0">
+              @for (d of documents; track d) {
+                <li>{{ d }}</li>
+              }
+            </ul>
+          </div>
+
+          <div class="sidebar-card" appReveal="right" [revealDelay]="200">
+            <h3><i class="bi bi-headset me-2"></i>Admissions Office</h3>
+            <ul class="list-unstyled contact-mini mb-0">
+              <li><i class="bi bi-telephone"></i><a [href]="'tel:' + institution.phone">{{ institution.phone }}</a></li>
+              <li><i class="bi bi-envelope"></i><a [href]="'mailto:' + institution.admissionsEmail">{{ institution.admissionsEmail }}</a></li>
+              <li><i class="bi bi-clock"></i>{{ institution.hours }}</li>
+            </ul>
+          </div>
+        </div>
+      </aside>
+    </div>
+  </div>
+</section>
+
+<section class="section bg-tint">
+  <div class="container">
+    <div class="text-center mx-auto section-intro" appReveal>
+      <span class="eyebrow justify-content-center">Entry Requirements</span>
+      <h2 class="section-title">Minimum Requirements by Level</h2>
+    </div>
+    <div class="row g-4">
+      <div class="col-lg-4" appReveal [revealDelay]="0">
+        <div class="requirement-card">
+          <i class="bi bi-mortarboard"></i>
+          <h3>Diploma Programs</h3>
+          <p>Mean grade of <strong>C (plain)</strong> with at least C in English, Biology and Chemistry, and C- in Mathematics or Physics.</p>
+          <a class="link-arrow" routerLink="/academics/diploma-programs">View programs <i class="bi bi-arrow-right"></i></a>
+        </div>
+      </div>
+      <div class="col-lg-4" appReveal [revealDelay]="120">
+        <div class="requirement-card">
+          <i class="bi bi-award"></i>
+          <h3>Certificate Programs</h3>
+          <p>Mean grade of <strong>C- (minus)</strong> with at least D+ in English and Biology, or an equivalent qualification.</p>
+          <a class="link-arrow" routerLink="/academics/certificate-programs">View programs <i class="bi bi-arrow-right"></i></a>
+        </div>
+      </div>
+      <div class="col-lg-4" appReveal [revealDelay]="240">
+        <div class="requirement-card">
+          <i class="bi bi-lightning-charge"></i>
+          <h3>Short Courses</h3>
+          <p>Requirements vary by course. Most are open to practising health workers and members of the public.</p>
+          <a class="link-arrow" routerLink="/academics/short-courses">View courses <i class="bi bi-arrow-right"></i></a>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="section">
+  <div class="container">
+    <div class="row g-5">
+      <div class="col-lg-4" appReveal="left">
+        <span class="eyebrow">FAQs</span>
+        <h2 class="section-title">Frequently Asked Questions</h2>
+        <p class="text-body-secondary">Can't find what you're looking for? Our admissions team is happy to help.</p>
+        <a class="btn btn-outline-primary" routerLink="/contact">Contact Admissions</a>
+      </div>
+      <div class="col-lg-8" appReveal="right">
+        <div class="accordion faq-accordion" id="admissionFaq">
+          @for (faq of faqs; track faq.q; let i = $index) {
+            <div class="accordion-item">
+              <h3 class="accordion-header">
+                <button class="accordion-button" [class.collapsed]="i !== 0" type="button" data-bs-toggle="collapse"
+                  [attr.data-bs-target]="'#faq' + i" [attr.aria-expanded]="i === 0" [attr.aria-controls]="'faq' + i">
+                  {{ faq.q }}
+                </button>
+              </h3>
+              <div [id]="'faq' + i" class="accordion-collapse collapse" [class.show]="i === 0" data-bs-parent="#admissionFaq">
+                <div class="accordion-body">{{ faq.a }}</div>
+              </div>
+            </div>
+          }
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<app-cta-band />

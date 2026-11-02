@@ -1,0 +1,80 @@
+<app-page-header title="Careers" [image]="images.meeting"
+  subtitle="Join a team dedicated to excellence in health professions education." />
+
+<section class="section">
+  <div class="container">
+    <div class="row g-5 align-items-center">
+      <div class="col-lg-6" appReveal="left">
+        <span class="eyebrow">Work With Us</span>
+        <h2 class="section-title">Build Your Career at NMTC</h2>
+        <p class="lead text-body-secondary">
+          We are always looking for passionate educators, clinicians and professional staff who share our commitment to
+          quality healthcare training.
+        </p>
+        <p>
+          NMTC is an equal opportunity employer. We value diversity and encourage qualified candidates from all
+          backgrounds to apply.
+        </p>
+      </div>
+      <div class="col-lg-6" appReveal="right">
+        <div class="row g-3">
+          @for (p of perks; track p.title) {
+            <div class="col-sm-6">
+              <div class="feature-card feature-card-sm h-100">
+                <span class="feature-icon"><i class="bi" [class]="p.icon"></i></span>
+                <h3>{{ p.title }}</h3>
+                <p>{{ p.text }}</p>
+              </div>
+            </div>
+          }
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="section bg-tint">
+  <div class="container">
+    <div class="d-flex flex-column flex-md-row justify-content-between align-items-md-end gap-2 mb-4" appReveal>
+      <div>
+        <span class="eyebrow">Current Opportunities</span>
+        <h2 class="section-title mb-0">Open Vacancies</h2>
+      </div>
+      <span class="text-body-secondary">{{ vacancies.length }} positions available</span>
+    </div>
+
+    <div class="vacancy-list">
+      @for (v of vacancies; track v.title; let i = $index) {
+        <div appReveal [revealDelay]="(i % 3) * 80">
+        <div class="vacancy">
+          <div class="vacancy-main">
+            <h3>{{ v.title }}</h3>
+            <div class="vacancy-meta">
+              <span><i class="bi bi-building"></i>{{ v.department }}</span>
+              <span><i class="bi bi-briefcase"></i>{{ v.type }}</span>
+              <span><i class="bi bi-calendar-x"></i>Closes {{ v.closing | date: 'd MMM y' }}</span>
+            </div>
+          </div>
+          <a class="btn btn-outline-primary" [href]="applyHref(v.title)">Apply <i class="bi bi-arrow-right ms-1"></i></a>
+        </div>
+        </div>
+      }
+    </div>
+  </div>
+</section>
+
+<section class="section">
+  <div class="container">
+    <div class="info-banner" appReveal="zoom">
+      <div>
+        <h2 class="h3 mb-1">How to Apply</h2>
+        <p class="mb-0 text-body-secondary">
+          Send your application letter, detailed CV and copies of certificates to
+          <a [href]="'mailto:' + institution.careersEmail">{{ institution.careersEmail }}</a>, quoting the position title
+          in the subject line. Only shortlisted candidates will be contacted.
+        </p>
+      </div>
+      <a class="btn btn-primary btn-lg text-nowrap" [href]="'mailto:' + institution.careersEmail">Email HR</a>
+    </div>
+  </div>
+</section>

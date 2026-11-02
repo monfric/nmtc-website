@@ -1,0 +1,313 @@
+<!-- Hero -->
+<section class="hero">
+  <div #heroCarousel id="heroCarousel" class="carousel slide carousel-fade h-100">
+    <div class="carousel-indicators">
+      @for (slide of slides; track slide.title; let i = $index) {
+        <button type="button" data-bs-target="#heroCarousel" [attr.data-bs-slide-to]="i" [class.active]="i === 0"
+          [attr.aria-current]="i === 0 ? 'true' : null" [attr.aria-label]="'Slide ' + (i + 1)"></button>
+      }
+    </div>
+    <div class="carousel-inner h-100">
+      @for (slide of slides; track slide.title; let first = $first) {
+        <div class="carousel-item h-100" [class.active]="first">
+          <div class="hero-bg" [style.background-image]="'url(' + slide.image + ')'"></div>
+          <div class="hero-overlay"></div>
+          <div class="container h-100 position-relative">
+            <div class="hero-caption">
+              <span class="hero-eyebrow">{{ slide.eyebrow }}</span>
+              @if (first) {
+                <h1 class="hero-title">{{ slide.title }}</h1>
+              } @else {
+                <h2 class="hero-title">{{ slide.title }}</h2>
+              }
+              <p class="hero-text">{{ slide.text }}</p>
+              <div class="hero-actions">
+                <a class="btn btn-accent btn-lg" [attr.href]="links.applicationPortal">
+                  Apply Now <i class="bi bi-arrow-right ms-2"></i>
+                </a>
+                <a class="btn btn-outline-light btn-lg" routerLink="/academics/diploma-programs">Explore Programs</a>
+              </div>
+            </div>
+          </div>
+        </div>
+      }
+    </div>
+    <button class="carousel-control-prev" type="button" data-bs-target="#heroCarousel" data-bs-slide="prev">
+      <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+      <span class="visually-hidden">Previous</span>
+    </button>
+    <button class="carousel-control-next" type="button" data-bs-target="#heroCarousel" data-bs-slide="next">
+      <span class="carousel-control-next-icon" aria-hidden="true"></span>
+      <span class="visually-hidden">Next</span>
+    </button>
+  </div>
+  <a class="scroll-cue" href="#welcome" aria-label="Scroll to content"><span></span></a>
+</section>
+
+<!-- Quick links -->
+<section class="quicklinks">
+  <div class="container">
+    <div class="row g-0 quicklinks-row">
+      @for (q of quickLinks; track q.title; let i = $index) {
+        <div class="col-6 col-lg-3" appReveal [revealDelay]="i * 100">
+          @if (q.route) {
+            <a class="quicklink" [routerLink]="q.route">
+              <i class="bi" [class]="q.icon"></i>
+              <h3>{{ q.title }}</h3>
+              <p>{{ q.text }}</p>
+            </a>
+          } @else {
+            <a class="quicklink" [attr.href]="q.href">
+              <i class="bi" [class]="q.icon"></i>
+              <h3>{{ q.title }}</h3>
+              <p>{{ q.text }}</p>
+            </a>
+          }
+        </div>
+      }
+    </div>
+  </div>
+</section>
+
+<!-- Welcome -->
+<section id="welcome" class="section">
+  <div class="container">
+    <div class="row align-items-center g-5">
+      <div class="col-lg-6" appReveal="left">
+        <div class="image-stack">
+          <img class="image-stack-main" [src]="images.campusClassic" alt="NMTC main campus building" loading="lazy">
+          <img class="image-stack-secondary" [src]="images.skillsLab" alt="Clinical skills laboratory" loading="lazy">
+          <div class="image-stack-badge">
+            <strong>{{ institution.founded }}</strong>
+            <span>Established</span>
+          </div>
+        </div>
+      </div>
+      <div class="col-lg-6" appReveal="right">
+        <span class="eyebrow">Welcome to {{ institution.shortName }}</span>
+        <h2 class="section-title">A Tradition of Excellence in Health Professions Training</h2>
+        <p class="lead text-body-secondary">
+          The {{ institution.name }} is a premier institution dedicated to training competent, ethical and
+          compassionate healthcare professionals who serve communities with distinction.
+        </p>
+        <p>
+          For over two decades, NMTC has combined rigorous academic instruction with extensive clinical exposure.
+          Our graduates serve in hospitals, laboratories, pharmacies and community health programs across the
+          region and beyond.
+        </p>
+        <blockquote class="principal-quote">
+          <p>“Our mission is to nurture healthcare professionals who lead with knowledge and serve with compassion.”</p>
+          <footer>— The Principal, {{ institution.shortName }}</footer>
+        </blockquote>
+        <div class="d-flex flex-wrap gap-3">
+          <a class="btn btn-primary btn-lg" routerLink="/about/vision-mission">About NMTC</a>
+          <a class="btn btn-link btn-lg link-arrow" routerLink="/about/history">Our History <i class="bi bi-arrow-right"></i></a>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Stats -->
+<section class="stats-band parallax" [style.background-image]="'url(' + images.surgeons + ')'">
+  <div class="container position-relative">
+    <div class="row g-4 text-center">
+      @for (stat of stats; track stat.label; let i = $index) {
+        <div class="col-6 col-lg-3" appReveal="zoom" [revealDelay]="i * 120">
+          <div class="stat">
+            <i class="bi" [class]="stat.icon"></i>
+            <span class="stat-value" [appCounter]="stat.value" [counterSuffix]="stat.suffix">0</span>
+            <span class="stat-label">{{ stat.label }}</span>
+          </div>
+        </div>
+      }
+    </div>
+  </div>
+</section>
+
+<!-- Programs -->
+<section class="section bg-tint">
+  <div class="container">
+    <div class="row align-items-end mb-5 g-3">
+      <div class="col-lg-7" appReveal>
+        <span class="eyebrow">Academic Programs</span>
+        <h2 class="section-title mb-0">Programs Designed for Professional Practice</h2>
+      </div>
+      <div class="col-lg-5 text-lg-end" appReveal [revealDelay]="100">
+        <a class="btn btn-outline-primary" routerLink="/academics/diploma-programs">View All Programs <i class="bi bi-arrow-right ms-1"></i></a>
+      </div>
+    </div>
+    <div class="row g-4">
+      @for (program of programs; track program.title; let i = $index) {
+        <div class="col-md-6 col-lg-4" appReveal [revealDelay]="(i % 3) * 120">
+          <article class="program-card">
+            <div class="program-card-media">
+              <img [src]="program.image" [alt]="program.title" loading="lazy">
+              <span class="program-card-badge">{{ program.duration }}</span>
+            </div>
+            <div class="program-card-body">
+              <span class="program-card-icon"><i class="bi" [class]="program.icon"></i></span>
+              <h3>{{ program.title }}</h3>
+              <p>{{ program.summary }}</p>
+              <a class="link-arrow" routerLink="/academics/diploma-programs">Learn more <i class="bi bi-arrow-right"></i></a>
+            </div>
+          </article>
+        </div>
+      }
+    </div>
+  </div>
+</section>
+
+<!-- Why NMTC -->
+<section class="section">
+  <div class="container">
+    <div class="text-center mx-auto section-intro" appReveal>
+      <span class="eyebrow justify-content-center">Why Choose NMTC</span>
+      <h2 class="section-title">An Environment Built for Clinical Excellence</h2>
+      <p class="text-body-secondary">Everything you need to become a confident, skilled and caring health professional.</p>
+    </div>
+    <div class="row g-4">
+      @for (f of features; track f.title; let i = $index) {
+        <div class="col-md-6 col-lg-4" appReveal [revealDelay]="(i % 3) * 120">
+          <div class="feature-card">
+            <span class="feature-icon"><i class="bi" [class]="f.icon"></i></span>
+            <h3>{{ f.title }}</h3>
+            <p>{{ f.text }}</p>
+          </div>
+        </div>
+      }
+    </div>
+  </div>
+</section>
+
+<!-- Admissions steps -->
+<section class="section section-dark">
+  <div class="container">
+    <div class="row g-5 align-items-center">
+      <div class="col-lg-4" appReveal="left">
+        <span class="eyebrow eyebrow-light">Admissions</span>
+        <h2 class="section-title text-white">Your Path to NMTC in Four Steps</h2>
+        <p class="text-white-50">Applications for the January, May and September intakes are received through our online Application Portal.</p>
+        <a class="btn btn-accent btn-lg mt-2" routerLink="/admissions/admission-process">Admission Requirements</a>
+      </div>
+      <div class="col-lg-8">
+        <div class="steps">
+          @for (step of steps; track step.title; let i = $index) {
+            <div appReveal [revealDelay]="i * 150">
+              <div class="step">
+                <span class="step-number">0{{ i + 1 }}</span>
+                <i class="bi step-icon" [class]="step.icon"></i>
+                <h3>{{ step.title }}</h3>
+                <p>{{ step.text }}</p>
+              </div>
+            </div>
+          }
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- News & events -->
+<section class="section">
+  <div class="container">
+    <div class="row g-5">
+      <div class="col-lg-8">
+        <div appReveal>
+          <span class="eyebrow">News &amp; Updates</span>
+          <h2 class="section-title mb-4">Latest from the College</h2>
+        </div>
+        <div class="row g-4">
+          @for (item of news; track item.title; let i = $index; let first = $first) {
+            <div [class]="first ? 'col-12' : 'col-md-6'" appReveal [revealDelay]="i * 100">
+              <article class="news-card" [class.news-card-featured]="first">
+                <div class="news-card-media">
+                  <img [src]="item.image" [alt]="item.title" loading="lazy">
+                  <span class="news-card-category">{{ item.category }}</span>
+                </div>
+                <div class="news-card-body">
+                  <time class="news-card-date"><i class="bi bi-calendar3 me-1"></i>{{ item.date | date: 'longDate' }}</time>
+                  <h3>{{ item.title }}</h3>
+                  <p>{{ item.excerpt }}</p>
+                  <a class="link-arrow" href="#">Read more <i class="bi bi-arrow-right"></i></a>
+                </div>
+              </article>
+            </div>
+          }
+        </div>
+      </div>
+      <div class="col-lg-4">
+        <div class="events-panel" appReveal="right">
+          <h2 class="h4 mb-4"><i class="bi bi-calendar-event me-2"></i>Upcoming Events</h2>
+          <ul class="list-unstyled mb-4">
+            @for (e of events; track e.title) {
+              <li class="event-item">
+                <div class="event-date">
+                  <span>{{ e.date | date: 'dd' }}</span>
+                  <small>{{ e.date | date: 'MMM' }}</small>
+                </div>
+                <div>
+                  <h3>{{ e.title }}</h3>
+                  <p><i class="bi bi-clock me-1"></i>{{ e.time }} · <i class="bi bi-geo-alt me-1"></i>{{ e.venue }}</p>
+                </div>
+              </li>
+            }
+          </ul>
+          <a class="btn btn-outline-primary w-100" routerLink="/admissions/academic-calendars">Academic Calendar</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Testimonials -->
+<section class="section bg-tint testimonials">
+  <div class="container">
+    <div class="text-center mx-auto section-intro" appReveal>
+      <span class="eyebrow justify-content-center">Alumni Voices</span>
+      <h2 class="section-title">Graduates Making a Difference</h2>
+    </div>
+    <div #testimonialCarousel id="testimonialCarousel" class="carousel slide carousel-fade testimonial-carousel" appReveal="zoom">
+      <div class="carousel-inner">
+        @for (t of testimonials; track t.name; let first = $first) {
+          <div class="carousel-item" [class.active]="first">
+            <figure class="testimonial">
+              <i class="bi bi-quote testimonial-mark"></i>
+              <blockquote><p>{{ t.quote }}</p></blockquote>
+              <figcaption>
+                <strong>{{ t.name }}</strong>
+                <span>{{ t.role }}</span>
+              </figcaption>
+            </figure>
+          </div>
+        }
+      </div>
+      <div class="carousel-indicators testimonial-indicators">
+        @for (t of testimonials; track t.name; let i = $index) {
+          <button type="button" data-bs-target="#testimonialCarousel" [attr.data-bs-slide-to]="i" [class.active]="i === 0"
+            [attr.aria-label]="'Testimonial ' + (i + 1)"></button>
+        }
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Partners marquee -->
+<section class="partners">
+  <div class="container">
+    <p class="partners-label" appReveal="fade">In partnership with leading health institutions</p>
+  </div>
+  <div class="marquee" aria-label="Partner institutions">
+    <div class="marquee-track">
+      @for (round of [0, 1]; track round) {
+        @for (p of partners; track p.name) {
+          <span class="marquee-item" [attr.aria-hidden]="round === 1 ? 'true' : null">
+            <i class="bi" [class]="p.icon"></i>{{ p.name }}
+          </span>
+        }
+      }
+    </div>
+  </div>
+</section>
+
+<app-cta-band />

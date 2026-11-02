@@ -1,0 +1,69 @@
+<app-page-header title="Affiliate Institutions" [image]="images.reception" [crumbs]="[{ label: 'About' }]"
+  subtitle="Partnerships that give our students world-class clinical exposure and academic pathways." />
+
+<section class="section">
+  <div class="container">
+    <div class="text-center mx-auto section-intro" appReveal>
+      <span class="eyebrow justify-content-center">Our Network</span>
+      <h2 class="section-title">Strong Partnerships, Better Training</h2>
+      <p class="text-body-secondary">
+        NMTC works closely with hospitals, universities, regulators and development partners to deliver training that
+        reflects real-world practice.
+      </p>
+    </div>
+    <div class="row g-4">
+      @for (group of affiliates; track group.category; let i = $index) {
+        <div class="col-md-6" appReveal [revealDelay]="(i % 2) * 120">
+          <div class="affiliate-card">
+            <div class="affiliate-card-head">
+              <span class="feature-icon"><i class="bi" [class]="group.icon"></i></span>
+              <div>
+                <h3>{{ group.category }}</h3>
+                <p>{{ group.description }}</p>
+              </div>
+            </div>
+            <ul class="affiliate-list">
+              @for (item of group.items; track item) {
+                <li><i class="bi bi-check2-circle"></i>{{ item }}</li>
+              }
+            </ul>
+          </div>
+        </div>
+      }
+    </div>
+  </div>
+</section>
+
+<section class="section section-dark">
+  <div class="container">
+    <div class="text-center mx-auto section-intro" appReveal>
+      <span class="eyebrow eyebrow-light justify-content-center">What Partnerships Mean for You</span>
+      <h2 class="section-title text-white">Benefits to Our Students</h2>
+    </div>
+    <div class="row g-4">
+      @for (b of benefits; track b.title; let i = $index) {
+        <div class="col-sm-6 col-lg-3" appReveal [revealDelay]="i * 120">
+          <div class="feature-card feature-card-dark h-100">
+            <span class="feature-icon"><i class="bi" [class]="b.icon"></i></span>
+            <h3>{{ b.title }}</h3>
+            <p>{{ b.text }}</p>
+          </div>
+        </div>
+      }
+    </div>
+  </div>
+</section>
+
+<section class="section">
+  <div class="container">
+    <div class="info-banner" appReveal="zoom">
+      <div>
+        <h2 class="h3 mb-1">Become a Partner Institution</h2>
+        <p class="mb-0 text-body-secondary">We welcome collaboration with health facilities, universities and organisations.</p>
+      </div>
+      <a class="btn btn-primary btn-lg" routerLink="/contact">Contact Us</a>
+    </div>
+  </div>
+</section>
+
+<app-cta-band />

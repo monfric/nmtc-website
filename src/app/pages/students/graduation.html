@@ -1,0 +1,91 @@
+<app-page-header title="Graduation Ceremony" [image]="images.graduation" [crumbs]="[{ label: 'Students' }]"
+  subtitle="Celebrating the achievements of our graduands." />
+
+<section class="countdown-band">
+  <div class="container">
+    <div class="row g-4 align-items-center">
+      <div class="col-lg-5" appReveal="left">
+        <span class="eyebrow eyebrow-light">Next Ceremony</span>
+        <h2 class="text-white mb-2">26th Graduation Ceremony</h2>
+        <p class="mb-0 text-white-50"><i class="bi bi-calendar-event me-2"></i>{{ ceremonyDate | date: 'EEEE, d MMMM y · h:mm a' }}</p>
+      </div>
+      <div class="col-lg-7" appReveal="right">
+        <div class="countdown">
+          @for (unit of countdown(); track unit.label) {
+            <div class="countdown-unit">
+              <span class="countdown-value">{{ unit.value < 10 ? '0' + unit.value : unit.value }}</span>
+              <span class="countdown-label">{{ unit.label }}</span>
+            </div>
+          }
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="section">
+  <div class="container">
+    <div class="row g-5">
+      <div class="col-lg-7">
+        <div appReveal>
+          <span class="eyebrow">Graduand Checklist</span>
+          <h2 class="section-title">Preparing for Graduation</h2>
+          <p class="text-body-secondary mb-4">To be eligible to graduate, students must have passed all required units, completed clinical placements and cleared all fees.</p>
+        </div>
+        <ol class="process-list">
+          @for (c of checklist; track c.title; let i = $index) {
+            <li class="process-step" appReveal [revealDelay]="80">
+              <span class="process-number">{{ i + 1 }}</span>
+              <div>
+                <h3>{{ c.title }}</h3>
+                <p>{{ c.text }}</p>
+              </div>
+            </li>
+          }
+        </ol>
+      </div>
+      <div class="col-lg-5">
+        <div class="row g-3">
+          @for (item of info; track item.title; let i = $index) {
+            <div class="col-sm-6 col-lg-12" appReveal="right" [revealDelay]="i * 100">
+              <div class="info-tile">
+                <i class="bi" [class]="item.icon"></i>
+                <div>
+                  <h3>{{ item.title }}</h3>
+                  <p>{{ item.text }}</p>
+                </div>
+              </div>
+            </div>
+          }
+        </div>
+        <div class="sidebar-card sidebar-card-primary mt-4" appReveal="right" [revealDelay]="300">
+          <h3><i class="bi bi-list-check me-2"></i>Graduation List</h3>
+          <p>View the provisional graduation list and complete clearance on the Student Portal.</p>
+          <a class="btn btn-accent w-100" [attr.href]="links.studentPortal">Go to Student Portal</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="section bg-tint">
+  <div class="container">
+    <div class="row g-4 align-items-center">
+      <div class="col-lg-7" appReveal="zoom">
+        <div class="rounded-image">
+          <img [src]="images.graduation" alt="Graduates celebrating" loading="lazy">
+        </div>
+      </div>
+      <div class="col-lg-5" appReveal="right">
+        <span class="eyebrow">A Proud Tradition</span>
+        <h2 class="section-title">Celebrating Our Graduates</h2>
+        <p>
+          Every year, NMTC celebrates hundreds of graduands who join a growing alumni community of health professionals
+          serving across the region and around the world.
+        </p>
+        <p class="text-body-secondary">For enquiries about graduation, certificates and transcripts, contact the Registrar’s office.</p>
+        <a class="btn btn-primary" routerLink="/contact">Contact the Registrar</a>
+      </div>
+    </div>
+  </div>
+</section>

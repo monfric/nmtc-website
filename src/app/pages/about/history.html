@@ -1,0 +1,81 @@
+<app-page-header title="History of NMTC" [image]="images.campusClassic" [crumbs]="[{ label: 'About' }]"
+  [subtitle]="'Nearly three decades of training healthcare professionals since ' + institution.founded + '.'" />
+
+<section class="section">
+  <div class="container">
+    <div class="row g-5 align-items-center">
+      <div class="col-lg-6" appReveal="left">
+        <span class="eyebrow">Our Story</span>
+        <h2 class="section-title">From Humble Beginnings to a Leading Medical College</h2>
+        <p class="lead text-body-secondary">
+          The {{ institution.name }} was founded in {{ institution.founded }} in response to the growing need for
+          skilled health workers in the region.
+        </p>
+        <p>
+          Starting with a single classroom block and sixty students, the college has grown into a multi-disciplinary
+          institution offering more than twenty accredited programs. Throughout its growth, NMTC has stayed true to its
+          founding commitment: to train health professionals who combine sound knowledge with genuine compassion.
+        </p>
+        <p>
+          Today, thousands of NMTC alumni serve in public and private hospitals, research institutions, pharmaceutical
+          companies and community health programs.
+        </p>
+      </div>
+      <div class="col-lg-6" appReveal="right">
+        <div class="image-stack">
+          <img class="image-stack-main" [src]="images.campus" alt="NMTC campus" loading="lazy">
+          <img class="image-stack-secondary" [src]="images.lecture" alt="Students in a lecture" loading="lazy">
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="section bg-tint">
+  <div class="container">
+    <div class="text-center mx-auto section-intro" appReveal>
+      <span class="eyebrow justify-content-center">Milestones</span>
+      <h2 class="section-title">Our Journey Through the Years</h2>
+    </div>
+    <div class="timeline">
+      @for (m of milestones; track m.year; let even = $even) {
+        <div class="timeline-item" [class.timeline-item-right]="!even" [appReveal]="even ? 'left' : 'right'">
+          <div class="timeline-dot"></div>
+          <div class="timeline-card">
+            <span class="timeline-year">{{ m.year }}</span>
+            <h3>{{ m.title }}</h3>
+            <p>{{ m.text }}</p>
+          </div>
+        </div>
+      }
+    </div>
+  </div>
+</section>
+
+<section class="section">
+  <div class="container">
+    <div class="row g-5 align-items-center">
+      <div class="col-lg-4" appReveal="zoom">
+        <div class="rounded-image portrait">
+          <img [src]="images.doctor" alt="The Principal of NMTC" loading="lazy">
+        </div>
+      </div>
+      <div class="col-lg-8" appReveal="right">
+        <span class="eyebrow">Message from the Principal</span>
+        <h2 class="section-title">Building on a Proud Legacy</h2>
+        <p>
+          It is with great pride that I welcome you to the {{ institution.name }}. Our history is a testament to the
+          dedication of the founders, faculty, staff and students who have shaped this institution.
+        </p>
+        <p>
+          As we look to the future, we remain committed to innovation in teaching, deepening our clinical partnerships
+          and expanding access to quality health professions education. I invite you to become part of our story.
+        </p>
+        <p class="signature mb-0">The Principal</p>
+        <p class="text-body-secondary">{{ institution.name }}</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<app-cta-band />

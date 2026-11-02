@@ -1,0 +1,93 @@
+<div class="topbar d-none d-lg-block">
+  <div class="container d-flex justify-content-between align-items-center">
+    <ul class="topbar-contact list-unstyled mb-0">
+      <li><a [href]="'tel:' + institution.phone"><i class="bi bi-telephone"></i>{{ institution.phone }}</a></li>
+      <li><a [href]="'mailto:' + institution.email"><i class="bi bi-envelope"></i>{{ institution.email }}</a></li>
+      <li><i class="bi bi-clock"></i>{{ institution.hours }}</li>
+    </ul>
+    <ul class="topbar-links list-unstyled mb-0">
+      @for (link of topNav; track link.label) {
+        <li>
+          @if (link.route) {
+            <a [routerLink]="link.route" routerLinkActive="active"><i class="bi" [class]="link.icon"></i>{{ link.label }}</a>
+          } @else {
+            <a [attr.href]="link.href"><i class="bi" [class]="link.icon"></i>{{ link.label }}</a>
+          }
+        </li>
+      }
+    </ul>
+  </div>
+</div>
+
+<nav class="navbar navbar-expand-lg main-navbar" aria-label="Main navigation">
+  <div class="container">
+    <a class="navbar-brand brand" routerLink="/" aria-label="NMTC home">
+      <app-crest class="brand-crest" />
+      <span class="brand-text">
+        <span class="brand-name">{{ institution.shortName }}</span>
+        <span class="brand-full">{{ institution.name }}</span>
+      </span>
+    </a>
+
+    <button class="navbar-toggler" type="button" aria-controls="mainNav" [attr.aria-expanded]="menuOpen()"
+      aria-label="Toggle navigation" (click)="toggleMenu()" [class.is-open]="menuOpen()">
+      <span class="toggler-bar"></span>
+      <span class="toggler-bar"></span>
+      <span class="toggler-bar"></span>
+    </button>
+
+    <div class="collapse navbar-collapse" id="mainNav" [class.show]="menuOpen()">
+      <ul class="navbar-nav ms-auto align-items-lg-center">
+        @for (item of mainNav; track item.label) {
+          @if (item.children) {
+            <li class="nav-item dropdown">
+              <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown"
+                aria-expanded="false" [class.active]="isSectionActive(item)">{{ item.label }}</a>
+              <ul class="dropdown-menu">
+                @for (child of item.children; track child.label) {
+                  <li>
+                    @if (child.route) {
+                      <a class="dropdown-item" [routerLink]="child.route" routerLinkActive="active">
+                        <i class="bi" [class]="child.icon"></i>{{ child.label }}
+                      </a>
+                    } @else {
+                      <a class="dropdown-item" [attr.href]="child.href">
+                        <i class="bi" [class]="child.icon"></i>{{ child.label }}
+                        <i class="bi bi-box-arrow-up-right ms-auto small opacity-50"></i>
+                      </a>
+                    }
+                  </li>
+                }
+              </ul>
+            </li>
+          } @else if (item.highlight) {
+            <li class="nav-item ms-lg-2 mt-2 mt-lg-0">
+              <a class="btn btn-accent btn-apply" [attr.href]="item.href">
+                <i class="bi bi-pencil-square me-1"></i>{{ item.label }}
+              </a>
+            </li>
+          } @else if (item.route) {
+            <li class="nav-item">
+              <a class="nav-link" [routerLink]="item.route" routerLinkActive="active"
+                [routerLinkActiveOptions]="{ exact: true }">{{ item.label }}</a>
+            </li>
+          } @else {
+            <li class="nav-item">
+              <a class="nav-link" [attr.href]="item.href">{{ item.label }}</a>
+            </li>
+          }
+        }
+      </ul>
+
+      <div class="mobile-quicklinks d-lg-none">
+        @for (link of topNav; track link.label) {
+          @if (link.route) {
+            <a [routerLink]="link.route"><i class="bi" [class]="link.icon"></i>{{ link.label }}</a>
+          } @else {
+            <a [attr.href]="link.href"><i class="bi" [class]="link.icon"></i>{{ link.label }}</a>
+          }
+        }
+      </div>
+    </div>
+  </div>
+</nav>

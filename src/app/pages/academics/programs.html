@@ -1,0 +1,98 @@
+<app-page-header [title]="meta().title" [image]="meta().image" [crumbs]="[{ label: 'Academics' }]"
+  [subtitle]="meta().eyebrow" />
+
+<section class="section">
+  <div class="container">
+    <div class="row g-5">
+      <div class="col-lg-8">
+        <div class="mb-5" appReveal>
+          <span class="eyebrow">{{ meta().eyebrow }}</span>
+          <h2 class="section-title">{{ programs().length }} {{ meta().title }} Offered</h2>
+          <p class="lead text-body-secondary mb-0">{{ meta().intro }}</p>
+        </div>
+
+        <div class="row g-4">
+          @for (p of programs(); track p.title; let i = $index) {
+            <div [class]="level() === 'short' ? 'col-md-6' : 'col-12'" appReveal [revealDelay]="(i % 2) * 100">
+              <article class="course-card" [class.course-card-compact]="level() === 'short'">
+                @if (p.image) {
+                  <div class="course-card-media">
+                    <img [src]="p.image" [alt]="p.title" loading="lazy">
+                  </div>
+                }
+                <div class="course-card-body">
+                  <div class="d-flex align-items-start gap-3 mb-2">
+                    <span class="course-card-icon"><i class="bi" [class]="p.icon"></i></span>
+                    <h3>{{ p.title }}</h3>
+                  </div>
+                  <p>{{ p.summary }}</p>
+
+                  <ul class="course-facts">
+                    <li><i class="bi bi-clock-history"></i><span>Duration</span><strong>{{ p.duration }}</strong></li>
+                    <li><i class="bi bi-calendar-event"></i><span>Intakes</span><strong>{{ p.intakes }}</strong></li>
+                    <li><i class="bi bi-person-workspace"></i><span>Mode</span><strong>{{ p.mode }}</strong></li>
+                  </ul>
+
+                  <details class="course-details">
+                    <summary>Entry requirements{{ p.careers ? ' & career paths' : '' }}</summary>
+                    <ul class="check-list check-list-sm mt-3">
+                      @for (r of p.requirements; track r) {
+                        <li>{{ r }}</li>
+                      }
+                    </ul>
+                    @if (p.careers) {
+                      <p class="small fw-semibold mb-2 mt-3">Career opportunities</p>
+                      <div class="d-flex flex-wrap gap-2">
+                        @for (c of p.careers; track c) {
+                          <span class="career-chip">{{ c }}</span>
+                        }
+                      </div>
+                    }
+                  </details>
+
+                  <div class="course-actions">
+                    <a class="btn btn-primary" [attr.href]="links.applicationPortal">Apply Now</a>
+                    <a class="btn btn-link link-arrow" routerLink="/contact">Enquire <i class="bi bi-arrow-right"></i></a>
+                  </div>
+                </div>
+              </article>
+            </div>
+          }
+        </div>
+      </div>
+
+      <aside class="col-lg-4">
+        <div class="sticky-lg-top sidebar-sticky">
+          <div class="sidebar-card" appReveal="right">
+            <h3><i class="bi bi-grid me-2"></i>Academic Programs</h3>
+            <nav class="sidebar-nav">
+              @for (l of levels; track l.key) {
+                <a [routerLink]="l.route" routerLinkActive="active">
+                  {{ l.title }} <span class="badge rounded-pill">{{ l.count }}</span>
+                </a>
+              }
+            </nav>
+          </div>
+
+          <div class="sidebar-card sidebar-card-primary" appReveal="right" [revealDelay]="120">
+            <h3><i class="bi bi-calendar-check me-2"></i>January 2027 Intake</h3>
+            <p>Applications are now open for all diploma and certificate programs.</p>
+            <a class="btn btn-accent w-100 mb-2" [attr.href]="links.applicationPortal">Apply Online</a>
+            <a class="btn btn-outline-light w-100" routerLink="/admissions/admission-process">How to Apply</a>
+          </div>
+
+          <div class="sidebar-card" appReveal="right" [revealDelay]="200">
+            <h3><i class="bi bi-question-circle me-2"></i>Need Guidance?</h3>
+            <p class="small text-body-secondary">Our admissions team can help you choose the right program.</p>
+            <ul class="list-unstyled contact-mini mb-0">
+              <li><i class="bi bi-telephone"></i><a [href]="'tel:' + institution.phone">{{ institution.phone }}</a></li>
+              <li><i class="bi bi-envelope"></i><a [href]="'mailto:' + institution.admissionsEmail">{{ institution.admissionsEmail }}</a></li>
+            </ul>
+          </div>
+        </div>
+      </aside>
+    </div>
+  </div>
+</section>
+
+<app-cta-band />

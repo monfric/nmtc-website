@@ -1,0 +1,39 @@
+// Brand palette — NMTC green with an academic gold accent.
+$nmtc-green: #0a5c36;
+$nmtc-green-dark: #063d24;
+$nmtc-green-deep: #04281a;
+$nmtc-green-light: #e9f4ee;
+$nmtc-gold: #c9a227;
+$nmtc-gold-dark: #a8851a;
+$nmtc-ink: #1f2d27;
+
+// Bootstrap overrides
+$primary: $nmtc-green;
+$success: #198754;
+$body-color: $nmtc-ink;
+$body-secondary-color: #5b6b63;
+$link-color: $nmtc-green;
+$link-hover-color: $nmtc-green-dark;
+
+$font-family-sans-serif: 'Inter', system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+$headings-font-family: 'Playfair Display', Georgia, 'Times New Roman', serif;
+$headings-font-weight: 700;
+$headings-color: $nmtc-green-deep;
+$font-size-base: 1rem;
+$line-height-base: 1.7;
+
+$border-radius: 0.5rem;
+$border-radius-lg: 0.75rem;
+$btn-padding-x: 1.4rem;
+$btn-padding-y: 0.6rem;
+$btn-padding-x-lg: 1.9rem;
+$btn-font-weight: 600;
+$input-focus-border-color: lighten($nmtc-green, 25%);
+$dropdown-link-active-bg: $nmtc-green;
+$accordion-button-active-bg: $nmtc-green-light;
+$accordion-button-active-color: $nmtc-green-deep;
+$breadcrumb-divider-color: rgba(#fff, 0.6);
+$breadcrumb-active-color: rgba(#fff, 0.85);
+
+$ease-out: cubic-bezier(0.2, 0.65, 0.3, 1);
+$topbar-height: 42px;

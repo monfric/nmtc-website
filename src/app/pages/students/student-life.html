@@ -1,0 +1,84 @@
+<app-page-header title="Student Life" [image]="images.students" [crumbs]="[{ label: 'Students' }]"
+  subtitle="A supportive, vibrant community beyond the classroom." />
+
+<section class="section">
+  <div class="container">
+    <div class="row g-5 align-items-center">
+      <div class="col-lg-6" appReveal="left">
+        <span class="eyebrow">Life at NMTC</span>
+        <h2 class="section-title">More Than an Education</h2>
+        <p class="lead text-body-secondary">
+          At NMTC, we believe great health professionals are shaped both inside and outside the classroom.
+        </p>
+        <p>
+          Our students enjoy a rich campus experience — from leadership opportunities and sports to clubs, community
+          service and cultural events — all within a safe and supportive environment that promotes wellbeing and
+          personal growth.
+        </p>
+      </div>
+      <div class="col-lg-6" appReveal="right">
+        <div class="rounded-image">
+          <img [src]="images.friends" alt="NMTC students together" loading="lazy">
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="section bg-tint">
+  <div class="container">
+    <div class="row g-4">
+      @for (r of resources; track r.title; let i = $index) {
+        <div class="col-md-4" appReveal [revealDelay]="i * 120">
+          <a class="resource-card" [attr.href]="r.href">
+            <i class="bi" [class]="r.icon"></i>
+            <div>
+              <h3>{{ r.title }}</h3>
+              <p>{{ r.text }}</p>
+            </div>
+            <i class="bi bi-arrow-up-right resource-arrow"></i>
+          </a>
+        </div>
+      }
+    </div>
+  </div>
+</section>
+
+<section class="section">
+  <div class="container">
+    <div class="text-center mx-auto section-intro" appReveal>
+      <span class="eyebrow justify-content-center">Campus Experience</span>
+      <h2 class="section-title">Support, Community & Growth</h2>
+    </div>
+    <div class="row g-4">
+      @for (p of pillars; track p.title; let i = $index) {
+        <div class="col-md-6 col-lg-4" appReveal [revealDelay]="(i % 3) * 120">
+          <div class="feature-card h-100">
+            <span class="feature-icon"><i class="bi" [class]="p.icon"></i></span>
+            <h3>{{ p.title }}</h3>
+            <p>{{ p.text }}</p>
+          </div>
+        </div>
+      }
+    </div>
+  </div>
+</section>
+
+<section class="section bg-tint">
+  <div class="container">
+    <div class="text-center mx-auto section-intro" appReveal>
+      <span class="eyebrow justify-content-center">Gallery</span>
+      <h2 class="section-title">Moments on Campus</h2>
+    </div>
+    <div class="gallery">
+      @for (g of gallery; track g.caption; let i = $index) {
+        <figure class="gallery-item" [class.gallery-item-wide]="g.wide" appReveal="zoom" [revealDelay]="i * 80">
+          <img [src]="g.image" [alt]="g.caption" loading="lazy">
+          <figcaption>{{ g.caption }}</figcaption>
+        </figure>
+      }
+    </div>
+  </div>
+</section>
+
+<app-cta-band />

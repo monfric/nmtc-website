@@ -1,0 +1,75 @@
+<app-page-header title="Academic Calendars" [image]="images.lecture" [crumbs]="[{ label: 'Admissions' }]"
+  subtitle="Key academic dates for the 2026/2027 academic year." />
+
+<section class="section">
+  <div class="container">
+    <div class="row g-4 mb-5">
+      @for (intake of intakes; track intake.month; let i = $index) {
+        <div class="col-md-4" appReveal [revealDelay]="i * 120">
+          <div class="intake-card">
+            <span class="intake-month">{{ intake.month }}</span>
+            <span class="intake-label">Intake</span>
+            <p class="mb-1"><i class="bi bi-hourglass-split me-1"></i>{{ intake.deadline }}</p>
+            <small>{{ intake.programs }}</small>
+          </div>
+        </div>
+      }
+    </div>
+
+    <div class="d-flex flex-column flex-md-row justify-content-between align-items-md-end gap-3 mb-4" appReveal>
+      <div>
+        <span class="eyebrow">2026 / 2027 Academic Year</span>
+        <h2 class="section-title mb-0">Calendar of Events</h2>
+      </div>
+      <a class="btn btn-outline-primary" href="#"><i class="bi bi-file-earmark-pdf me-2"></i>Download Calendar (PDF)</a>
+    </div>
+
+    <div appReveal>
+      <ul class="nav calendar-tabs" role="tablist">
+        @for (s of semesters; track s.title; let i = $index) {
+          <li class="nav-item" role="presentation">
+            <button class="nav-link" type="button" role="tab" [class.active]="activeTab() === i"
+              [attr.aria-selected]="activeTab() === i" (click)="activeTab.set(i)">
+              {{ s.title }}
+              <small>{{ s.period }}</small>
+            </button>
+          </li>
+        }
+      </ul>
+
+      @for (s of semesters; track s.title; let i = $index) {
+        @if (activeTab() === i) {
+          <div class="calendar-panel" role="tabpanel">
+            <div class="table-responsive">
+              <table class="table calendar-table align-middle mb-0">
+                <thead>
+                  <tr>
+                    <th scope="col" class="w-auto">#</th>
+                    <th scope="col">Activity</th>
+                    <th scope="col" class="text-md-end">Date</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  @for (e of s.entries; track e.activity; let n = $index) {
+                    <tr [style.animation-delay.ms]="n * 60">
+                      <td class="text-body-secondary">{{ n + 1 }}</td>
+                      <td>{{ e.activity }}</td>
+                      <td class="text-md-end fw-semibold text-primary text-nowrap">{{ e.date }}</td>
+                    </tr>
+                  }
+                </tbody>
+              </table>
+            </div>
+          </div>
+        }
+      }
+    </div>
+
+    <p class="small text-body-secondary mt-4" appReveal="fade">
+      <i class="bi bi-info-circle me-1"></i>
+      Dates are subject to change. Any amendments will be communicated through the Student Portal and official notices.
+    </p>
+  </div>
+</section>
+
+<app-cta-band />
