@@ -39,19 +39,19 @@ export const IMAGES = {
 } as const;
 
 export const INSTITUTION = {
-  name: 'National Medical Training College',
+  name: 'ST Joseph Nyabondo Medical Training College',
   shortName: 'NMTC',
-  motto: 'Knowledge · Compassion · Service',
-  founded: 1998,
-  address: 'P.O. Box 00000 – 00100, Medical Campus Road',
-  city: 'City, Country',
-  phone: '+000 700 000 000',
-  phoneAlt: '+000 20 000 0000',
-  email: 'info@nmtc.ac.xx',
-  admissionsEmail: 'admissions@nmtc.ac.xx',
-  careersEmail: 'careers@nmtc.ac.xx',
+  motto: 'Love and Serve',
+  founded: 1959,
+  address: 'P.O. Box 341 – 40109',
+  city: 'Sondu, Kenya',
+  phone: '+254 11961598',
+  phoneAlt: '+254 11961598',
+  email: 'mtcnyabondo@gmail.com',
+  admissionsEmail: 'mtcnyabondo@gmail.com',
+  careersEmail: 'mtcnyabondo@gmail.com',
   hours: 'Mon – Fri: 8:00 am – 5:00 pm',
-  regulator: 'the National Health Professions Council',
+  regulator: 'The Nursing Council of Kenya - NCK',
   social: [
     { icon: 'bi-facebook', label: 'Facebook', href: '#' },
     { icon: 'bi-twitter-x', label: 'X (Twitter)', href: '#' },
@@ -158,7 +158,7 @@ export const PROGRAM_LEVELS: Record<
     title: 'Diploma Programs',
     eyebrow: 'Professional Diplomas',
     intro:
-      'Our three-year diploma programs combine rigorous classroom instruction, simulation-based skills training and supervised clinical placements to prepare graduates for licensure and professional practice.',
+      'Our diploma programs combine rigorous classroom instruction, simulation-based skills training and supervised clinical placements to prepare graduates for licensure and professional practice.',
     image: IMAGES.lab,
     route: '/academics/diploma-programs'
   },
@@ -193,6 +193,40 @@ const CERTIFICATE_REQUIREMENTS = [
   'Original and copies of academic certificates and national ID / birth certificate'
 ];
 
+const DIPLOMA_REQUIREMENTS_CLINICAL_MEDICINE = [
+  'Secondary school certificate with a minimum mean grade of C (plain)',
+  'At least C in English/Kiswahili and Biology',
+  'Minimum C- in Chemistry and Mathematics or Physics'
+];
+
+const DIPLOMA_REQUIREMENTS_NURSING = [
+  'Secondary school certificate with a minimum mean grade of C (plain)',
+  'At least C in English/Kiswahili and Biology',
+  'Minimum C- in Chemistry or Mathematics or Physics'
+];
+
+const DIPLOMA_REQUIREMENTS_PHARMACY = [
+  'Secondary school certificate with a minimum mean grade of C (plain)',
+  'At least C in English/Kiswahili and Biology',
+  'Minimum C in Chemistry and Mathematics or Physics'
+];
+
+const DIPLOMA_REQUIREMENTS_HEALTH_RECORDS = [
+  'Secondary school certificate with a minimum mean grade of C (plain)',
+  'At least C- in English/Kiswahili',
+  'Minimum D+ in Mathematics and Biology and D+ in any of the rest'
+];
+
+const CERTIFICATE_REQUIREMENTS_HEALTH_RECORDS = [
+  'Secondary school certificate with a minimum mean grade of C- (minus)',
+  'At least C- in English/Kiswahili',
+  'D in Mathematics and Biology and in any of the rest'
+];
+
+const CERTIFICATE_REQUIREMENTS_UPGRADING_HEALTH_RECORDS = [
+  'Certificate in health records'
+];
+
 export const PROGRAMS: Program[] = [
   {
     title: 'Diploma in Clinical Medicine & Surgery',
@@ -200,25 +234,25 @@ export const PROGRAMS: Program[] = [
     icon: 'bi-heart-pulse',
     image: IMAGES.doctorPatient,
     duration: '3 years',
-    intakes: 'January · September',
+    intakes: 'September',
     mode: 'Full-time',
     summary:
       'Train as a clinical officer able to diagnose, treat and manage common medical and surgical conditions across primary and referral facilities.',
-    requirements: DIPLOMA_REQUIREMENTS,
-    careers: ['Clinical Officer', 'Outpatient Department Lead', 'Community Health Programs']
+    requirements: DIPLOMA_REQUIREMENTS_CLINICAL_MEDICINE,
+    careers: ['Clinical Officer']
   },
   {
-    title: 'Diploma in Nursing',
+    title: 'Diploma in Community Health Nursing',
     level: 'diploma',
     icon: 'bi-bandaid',
     image: IMAGES.nurse,
     duration: '3 years',
-    intakes: 'January · September',
+    intakes: 'March · September',
     mode: 'Full-time',
     summary:
       'Develop the clinical judgement, compassion and leadership required to deliver safe, holistic nursing care in hospitals and communities.',
-    requirements: DIPLOMA_REQUIREMENTS,
-    careers: ['Registered Nurse', 'Ward In-charge', 'Public Health Nurse']
+    requirements: DIPLOMA_REQUIREMENTS_NURSING,
+    careers: ['Registered Community Health Nurse']
   },
   {
     title: 'Diploma in Pharmacy',
@@ -226,139 +260,54 @@ export const PROGRAMS: Program[] = [
     icon: 'bi-capsule',
     image: IMAGES.pharmacy,
     duration: '3 years',
-    intakes: 'January · May · September',
-    mode: 'Full-time',
-    summary:
-      'Gain expertise in pharmaceutical sciences, dispensing practice, drug supply chain management and patient counselling.',
-    requirements: DIPLOMA_REQUIREMENTS,
-    careers: ['Pharmaceutical Technologist', 'Hospital Pharmacy', 'Pharmaceutical Sales']
-  },
-  {
-    title: 'Diploma in Medical Laboratory Sciences',
-    level: 'diploma',
-    icon: 'bi-droplet-half',
-    image: IMAGES.lab,
-    duration: '3 years',
-    intakes: 'January · September',
-    mode: 'Full-time',
-    summary:
-      'Master diagnostic laboratory techniques in haematology, microbiology, clinical chemistry, parasitology and blood transfusion science.',
-    requirements: DIPLOMA_REQUIREMENTS,
-    careers: ['Medical Laboratory Technologist', 'Research Laboratories', 'Blood Transfusion Services']
-  },
-  {
-    title: 'Diploma in Medical Imaging Sciences',
-    level: 'diploma',
-    icon: 'bi-radioactive',
-    image: IMAGES.imaging,
-    duration: '3 years',
     intakes: 'September',
     mode: 'Full-time',
     summary:
-      'Learn radiographic imaging, ultrasound fundamentals, radiation protection and patient care in modern diagnostic imaging departments.',
-    requirements: [...DIPLOMA_REQUIREMENTS.slice(0, 2), 'At least C in Physics and Mathematics', DIPLOMA_REQUIREMENTS[3]],
-    careers: ['Diagnostic Radiographer', 'Imaging Department Technologist']
+      'Gain expertise in pharmaceutical sciences, dispensing practice, drug supply chain management and patient counselling.',
+    requirements: DIPLOMA_REQUIREMENTS_PHARMACY,
+    careers: ['Pharmaceutical Technologist', 'Hospital Pharmacy', 'Pharmaceutical Sales']
   },
   {
-    title: 'Diploma in Health Records & Information Management',
+    title: 'Diploma in Health Records & Information Technology',
     level: 'diploma',
     icon: 'bi-clipboard2-data',
     image: IMAGES.clinicianLaptop,
     duration: '3 years',
-    intakes: 'January · May · September',
-    mode: 'Full-time / Evening',
+    intakes: 'March · September',
+    mode: 'Full-time',
     summary:
       'Manage health information systems, medical coding, health statistics and electronic records that underpin quality healthcare delivery.',
-    requirements: ['Secondary school certificate with a minimum mean grade of C (plain) or equivalent', 'At least C in English and Mathematics', DIPLOMA_REQUIREMENTS[3]],
+    requirements: DIPLOMA_REQUIREMENTS_HEALTH_RECORDS,
     careers: ['Health Records Officer', 'Health Information Analyst', 'Medical Coder']
   },
   {
-    title: 'Diploma in Physiotherapy',
-    level: 'diploma',
-    icon: 'bi-person-walking',
-    image: IMAGES.doctor,
-    duration: '3 years',
-    intakes: 'September',
-    mode: 'Full-time',
-    summary:
-      'Restore movement and function through evidence-based assessment, therapeutic exercise, manual therapy and rehabilitation.',
-    requirements: DIPLOMA_REQUIREMENTS,
-    careers: ['Physiotherapist', 'Sports Rehabilitation', 'Community Rehabilitation']
-  },
-  {
-    title: 'Diploma in Nutrition & Dietetics',
-    level: 'diploma',
-    icon: 'bi-egg-fried',
-    image: IMAGES.consultation,
-    duration: '3 years',
-    intakes: 'January · September',
-    mode: 'Full-time',
-    summary:
-      'Apply the science of nutrition to clinical care, community health programs and food service management.',
-    requirements: DIPLOMA_REQUIREMENTS,
-    careers: ['Nutritionist', 'Clinical Dietitian', 'Public Health Nutrition Officer']
-  },
-  {
-    title: 'Certificate in Community Health',
+    title: 'Certificate in Health Records and Information Technology',
     level: 'certificate',
     icon: 'bi-house-heart',
     duration: '2 years',
-    intakes: 'January · May · September',
+    intakes: 'March · September',
     mode: 'Full-time',
-    summary:
-      'Equip yourself to promote health, prevent disease and link households to primary healthcare services.',
-    requirements: CERTIFICATE_REQUIREMENTS
-  },
-  {
-    title: 'Certificate in Pharmaceutical Technology',
-    level: 'certificate',
-    icon: 'bi-prescription2',
-    duration: '2 years',
-    intakes: 'January · September',
-    mode: 'Full-time',
-    summary:
-      'Learn dispensing, storage and stock management of medicines under the supervision of registered pharmacy professionals.',
-    requirements: CERTIFICATE_REQUIREMENTS
-  },
-  {
-    title: 'Certificate in Medical Laboratory Techniques',
-    level: 'certificate',
-    icon: 'bi-eyedropper',
-    duration: '2 years',
-    intakes: 'September',
-    mode: 'Full-time',
-    summary:
-      'Build competence in specimen collection, basic diagnostic tests and laboratory safety procedures.',
-    requirements: [...CERTIFICATE_REQUIREMENTS.slice(0, 1), 'At least D+ in English, Biology and Chemistry', CERTIFICATE_REQUIREMENTS[2]]
-  },
-  {
-    title: 'Certificate in Health Records & IT',
-    level: 'certificate',
-    icon: 'bi-pc-display',
-    duration: '2 years',
-    intakes: 'January · May · September',
-    mode: 'Full-time / Evening',
     summary:
       'Combine medical records practice with practical ICT skills for registries and health information units.',
-    requirements: CERTIFICATE_REQUIREMENTS
+    requirements: CERTIFICATE_REQUIREMENTS_HEALTH_RECORDS
   },
   {
-    title: 'Certificate in Nutrition & Dietetics',
+    title: 'Upgrading Health Records and Information Technology',
     level: 'certificate',
-    icon: 'bi-basket',
-    duration: '2 years',
-    intakes: 'January · September',
+    icon: 'bi-pc-display',
+    duration: '1 years',
+    intakes: 'March · September',
     mode: 'Full-time',
     summary:
-      'Support nutrition assessment, counselling and food service programs in clinical and community settings.',
-    requirements: CERTIFICATE_REQUIREMENTS
+      'Combine medical records practice with practical ICT skills for registries and health information units.',
+    requirements: CERTIFICATE_REQUIREMENTS_UPGRADING_HEALTH_RECORDS
   },
   {
-    title: 'Certificate in Perioperative Theatre Technology',
+    title: 'Certificate in Healthcare Support Assistant',
     level: 'certificate',
     icon: 'bi-hospital',
-    duration: '2 years',
-    intakes: 'September',
+    duration: '6 Months',
+    intakes: 'March · September',
     mode: 'Full-time',
     summary:
       'Prepare for work in operating theatres — instrument handling, sterilisation, aseptic technique and patient safety.',
@@ -533,9 +482,9 @@ export const AFFILIATES = [
 ];
 
 export const HISTORY = [
-  { year: '1998', title: 'Foundation', text: 'NMTC is established with 60 students enrolled in nursing and clinical medicine.' },
-  { year: '2003', title: 'First Graduation', text: 'The pioneer class graduates, all passing their national licensure examinations.' },
-  { year: '2008', title: 'Expansion of Programs', text: 'Pharmacy and Medical Laboratory Sciences diploma programs are launched.' },
+  { year: '1959', title: 'Foundation', text: 'NMTC is established with 60 students enrolled in nursing and clinical medicine.' },
+  { year: '1962', title: 'First Graduation', text: 'The pioneer class graduates, all passing their national licensure examinations.' },
+  { year: '1998', title: 'Expansion of Programs', text: 'Pharmacy and Medical Laboratory Sciences diploma programs are launched.' },
   { year: '2013', title: 'Teaching Hospital Partnerships', text: 'Formal affiliation agreements are signed with regional and national referral hospitals.' },
   { year: '2018', title: 'New Academic Complex', text: 'A modern tuition block, library and student centre are commissioned.' },
   { year: '2021', title: 'E-Learning Launched', text: 'A learning management system brings blended learning to every program.' },
@@ -544,8 +493,7 @@ export const HISTORY = [
 
 export const VACANCIES = [
   { title: 'Lecturer – Clinical Medicine', department: 'School of Clinical Medicine', type: 'Full-time', closing: '2026-11-30' },
-  { title: 'Nurse Educator', department: 'School of Nursing', type: 'Full-time', closing: '2026-11-30' },
-  { title: 'Senior Laboratory Technologist', department: 'Medical Laboratory Sciences', type: 'Full-time', closing: '2026-12-05' },
+  { title: 'Nurse Tutor', department: 'School of Nursing', type: 'Full-time', closing: '2026-11-30' },
   { title: 'Part-time Lecturer – Pharmacology', department: 'School of Pharmacy', type: 'Part-time', closing: '2026-12-10' },
   { title: 'ICT Officer', department: 'ICT & E-Learning', type: 'Full-time', closing: '2026-12-12' },
   { title: 'Assistant Librarian', department: 'Library Services', type: 'Contract', closing: '2026-12-15' }

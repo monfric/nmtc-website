@@ -13,14 +13,38 @@ export class VisionMission {
   protected readonly institution = INSTITUTION;
   protected readonly images = IMAGES;
 
-  protected readonly values = [
-    { icon: 'bi-shield-check', title: 'Integrity', text: 'We uphold honesty, transparency and ethical conduct in all we do.' },
-    { icon: 'bi-heart-pulse', title: 'Compassion', text: 'We place patients, communities and human dignity at the heart of care.' },
-    { icon: 'bi-trophy', title: 'Excellence', text: 'We pursue the highest standards in teaching, learning and service.' },
-    { icon: 'bi-person-badge', title: 'Professionalism', text: 'We model accountability, respect and commitment to our professions.' },
-    { icon: 'bi-lightbulb', title: 'Innovation', text: 'We embrace research, technology and new ideas that improve health.' },
-    { icon: 'bi-people', title: 'Teamwork', text: 'We collaborate across disciplines, institutions and communities.' }
-  ];
+protected readonly values = [
+  {
+    icon: 'bi-universal-access',
+    title: 'Equity',
+    text: 'We promote fairness, inclusivity and equal opportunities for all, respecting diversity and human dignity.'
+  },
+  {
+    icon: 'bi-clipboard-check',
+    title: 'Accountability',
+    text: 'We take responsibility for our actions, decisions and commitments, upholding transparency and integrity.'
+  },
+  {
+    icon: 'bi-people',
+    title: 'Teamwork',
+    text: 'We foster collaboration, mutual respect and shared responsibility in achieving our institutional goals.'
+  },
+  {
+    icon: 'bi-lightbulb',
+    title: 'Creativity & Innovation',
+    text: 'We encourage creative thinking, research and innovative approaches to improve healthcare education and service delivery.'
+  },
+  {
+    icon: 'bi-person-badge',
+    title: 'Professionalism',
+    text: 'We uphold high standards of competence, ethical conduct, respect and commitment in all our professions.'
+  },
+  {
+    icon: 'bi-chat-heart',
+    title: 'Responsiveness',
+    text: 'We respond promptly and effectively to the needs, concerns and expectations of our students, patients and communities.'
+  }
+];
 
   protected readonly objectives = [
     'Offer accredited, competency-based programs that respond to national and global health needs.',
