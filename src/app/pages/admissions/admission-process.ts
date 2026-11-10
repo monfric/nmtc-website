@@ -46,9 +46,6 @@ export class AdmissionProcess {
     'Original and copies of secondary school certificate / result slip',
     'Copy of national ID card or birth certificate',
     'Two recent passport-size photographs',
-    'Completed medical examination form',
-    'Certificate of good conduct (where applicable)',
-    'Evidence of payment of fees'
   ];
 
   protected readonly faqs = [

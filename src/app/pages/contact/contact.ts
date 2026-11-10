@@ -18,9 +18,9 @@ export class Contact {
 
   protected readonly departments = [
     { name: 'Admissions Office', email: INSTITUTION.admissionsEmail, icon: 'bi-person-plus' },
-    { name: 'Registrar (Academic Affairs)', email: 'registrar@nmtc.ac.xx', icon: 'bi-journal-check' },
-    { name: 'Finance Office', email: 'finance@nmtc.ac.xx', icon: 'bi-cash-coin' },
-    { name: 'Student Affairs', email: 'studentaffairs@nmtc.ac.xx', icon: 'bi-people' }
+    { name: 'Registrar (Academic Affairs)', email: INSTITUTION.admissionsEmail, icon: 'bi-journal-check' },
+    { name: 'Finance Office', email: INSTITUTION.admissionsEmail, icon: 'bi-cash-coin' },
+    { name: 'Student Affairs', email: INSTITUTION.admissionsEmail, icon: 'bi-people' }
   ];
 
   protected readonly form = inject(NonNullableFormBuilder).group({

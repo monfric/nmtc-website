@@ -1,0 +1,21 @@
+# --- Force HTTPS: remove the # from the next 2 lines AFTER SSL is working (Part C) ---
+# RewriteCond %{HTTPS} off
+# RewriteRule ^ https://%{HTTP_HOST}%{REQUEST_URI} [L,R=301]
+
+# Serve real files and folders as they are
+RewriteCond %{REQUEST_FILENAME} -f [OR]
+RewriteCond %{REQUEST_FILENAME} -d
+RewriteRule ^ - [L]
+
+# Send every other request to the Angular app
+RewriteRule ^ /index.html [L]
+
+# Cache the hashed JS/CSS files for a long time, but always re-check index.html
+<IfModule mod_headers.c>
+  <FilesMatch "\.(js|css)$">
+    Header set Cache-Control "public, max-age=31536000, immutable"
+  </FilesMatch>
+  <FilesMatch "^index\.html$">
+    Header set Cache-Control "no-cache"
+  </FilesMatch>
+</IfModule>

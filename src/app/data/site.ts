@@ -354,16 +354,6 @@ export const PROGRAMS: Program[] = [
     requirements: ['Secondary school certificate', 'Health background is an advantage']
   },
   {
-    title: 'Infection Prevention & Control',
-    level: 'short',
-    icon: 'bi-shield-plus',
-    duration: '1 week',
-    intakes: 'Bi-monthly',
-    mode: 'Blended',
-    summary: 'Standard and transmission-based precautions, hand hygiene, waste management and outbreak response.',
-    requirements: ['Health workers and facility support staff']
-  },
-  {
     title: 'HIV Testing Services & Counselling',
     level: 'short',
     icon: 'bi-chat-heart',
@@ -372,16 +362,6 @@ export const PROGRAMS: Program[] = [
     mode: 'In-person',
     summary: 'Client-centred counselling, rapid testing algorithms, quality assurance and linkage to care.',
     requirements: ['Health workers, counsellors and community health promoters']
-  },
-  {
-    title: 'Health Facility Leadership & Management',
-    level: 'short',
-    icon: 'bi-diagram-3',
-    duration: '2 weeks',
-    intakes: 'Quarterly',
-    mode: 'Blended',
-    summary: 'Planning, human resource, finance and quality improvement skills for facility managers and in-charges.',
-    requirements: ['Health professionals in supervisory roles']
   },
   {
     title: 'Computer Packages for Health Professionals',
@@ -396,24 +376,24 @@ export const PROGRAMS: Program[] = [
 ];
 
 export const STATS = [
-  { value: 28, suffix: '+', label: 'Years of Excellence', icon: 'bi-award' },
-  { value: 9500, suffix: '+', label: 'Alumni in Practice', icon: 'bi-people' },
-  { value: 22, suffix: '', label: 'Accredited Programs', icon: 'bi-journal-medical' },
-  { value: 35, suffix: '+', label: 'Clinical Partner Facilities', icon: 'bi-hospital' }
+  { value: 60, suffix: '+', label: 'Years of Excellence', icon: 'bi-award' },
+  { value: 13000, suffix: '+', label: 'Alumni in Practice', icon: 'bi-people' },
+  { value: 12, suffix: '', label: 'Accredited Programs', icon: 'bi-journal-medical' },
+  { value: 9, suffix: '+', label: 'Clinical Partner Facilities', icon: 'bi-hospital' }
 ];
 
 export const NEWS = [
   {
     date: '2026-10-21',
     category: 'Research',
-    title: 'NMTC Hosts Annual Health Sciences Research Symposium',
-    excerpt: 'Faculty and students presented over forty research posters on maternal health, infection control and digital health.',
+    title: 'NMTC Received September Intake Students',
+    excerpt: 'NMTC received successful applicants for September 2026 intake.',
     image: IMAGES.lecture
   },
   {
     date: '2026-09-30',
     category: 'Facilities',
-    title: 'New Simulation & Clinical Skills Laboratory Commissioned',
+    title: 'New Clinical Skills Laboratory Commissioned',
     excerpt: 'The state-of-the-art laboratory offers high-fidelity manikins and a fully equipped mock theatre for hands-on training.',
     image: IMAGES.theatre
   },
@@ -459,36 +439,30 @@ export const AFFILIATES = [
     category: 'Teaching & Referral Hospitals',
     icon: 'bi-hospital',
     description: 'Supervised clinical placements and internships for all clinical programs.',
-    items: ['National Referral & Teaching Hospital', 'Regional Referral Hospital', 'County General Hospital', 'Maternity & Children’s Hospital']
-  },
-  {
-    category: 'Universities & Academic Partners',
-    icon: 'bi-bank',
-    description: 'Credit transfer, degree progression pathways and joint research.',
-    items: ['State University School of Medicine', 'University College of Health Sciences', 'Institute of Public Health']
+    items: ['ST Joseph Nyabondo Hospital', 'Kisumu Level 5 General Hospital']
   },
   {
     category: 'Regulatory & Professional Bodies',
     icon: 'bi-patch-check',
     description: 'Accreditation of programs, examinations and professional licensure.',
-    items: ['National Health Professions Council', 'Nursing & Midwifery Council', 'Pharmacy & Poisons Board', 'Laboratory Technicians Board']
+    items: ['Nursing Council of Kenya - NCK', 'TVET CDACC', 'Pharmacy & Poisons Board', 'Laboratory Technicians Board']
   },
   {
     category: 'Community & International Partners',
     icon: 'bi-globe2',
     description: 'Community outreach, faculty exchange and capacity-building programs.',
-    items: ['Ministry of Health', 'County Health Departments', 'International Health Partnerships', 'Faith-based Health Networks']
+    items: ['Ministry of Health - MOH', 'County Health Departments', 'International Health Partnerships', 'Faith-based Health Networks']
   }
 ];
 
 export const HISTORY = [
-  { year: '1959', title: 'Foundation', text: 'NMTC is established with 60 students enrolled in nursing and clinical medicine.' },
-  { year: '1962', title: 'First Graduation', text: 'The pioneer class graduates, all passing their national licensure examinations.' },
-  { year: '1998', title: 'Expansion of Programs', text: 'Pharmacy and Medical Laboratory Sciences diploma programs are launched.' },
-  { year: '2013', title: 'Teaching Hospital Partnerships', text: 'Formal affiliation agreements are signed with regional and national referral hospitals.' },
-  { year: '2018', title: 'New Academic Complex', text: 'A modern tuition block, library and student centre are commissioned.' },
-  { year: '2021', title: 'E-Learning Launched', text: 'A learning management system brings blended learning to every program.' },
-  { year: '2026', title: 'Simulation Centre', text: 'A high-fidelity simulation and clinical skills laboratory opens to students and partners.' }
+  { year: '1959', title: 'Foundation', text: 'NMTC is established to provide training for midwives whose services were highly needed in the healthcare sector.' },
+  { year: '1960', title: 'Recognition', text: 'It was recognized by the Nursing Council of Kenya as one of the nursing training institutions.' },
+  { year: '2001', title: 'Expansion of Programs', text: 'College expanded its academic programs by incorporating Diploma in Pharmaceutical Technology.' },
+  { year: '2004', title: 'Upgrade', text: 'The institution was upgraded to offer Diploma in Kenya Registered Community Health Nursing (KRCHN) at Basic level.' },
+  { year: '2015', title: 'Diversification', text: 'College further diversified its academic portfolio by introducing Diploma in Clinical Medicine and Surgery.' },
+  { year: '2018', title: 'Health Records Launched', text: 'College introduced Diploma and Certificate programs in Health Records and Information Technology.' },
+  { year: '2026', title: 'First HSS Cohort', text: 'Introduced Faculty of Health Service Support Assistant, with the first cohort reporting in March 2026.' }
 ];
 
 export const VACANCIES = [

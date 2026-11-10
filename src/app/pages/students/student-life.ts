@@ -22,7 +22,7 @@ export class StudentLife {
     { icon: 'bi-house-door', title: 'Accommodation', text: 'Safe, secure on-campus hostels with study rooms, Wi-Fi and 24-hour security.' },
     { icon: 'bi-chat-heart', title: 'Counselling & Wellness', text: 'Confidential counselling, peer mentorship and health services for every student.' },
     { icon: 'bi-trophy', title: 'Sports & Recreation', text: 'Football, volleyball, basketball, athletics and an annual inter-college games week.' },
-    { icon: 'bi-people', title: 'Clubs & Societies', text: 'Red Cross, debating, drama, Christian & Muslim unions, environment and research clubs.' },
+    { icon: 'bi-people', title: 'Clubs & Societies', text: 'Red Cross, debating, drama, YCS & Christian unions, environment and research clubs.' },
     { icon: 'bi-megaphone', title: 'Student Council', text: 'An elected council that represents student interests in college governance.' },
     { icon: 'bi-globe-americas', title: 'Community Outreach', text: 'Medical camps, health education and volunteer programs in local communities.' }
   ];
