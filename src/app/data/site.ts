@@ -7,8 +7,8 @@ const unsplash = (id: string, width = 1600) =>
   `https://images.unsplash.com/photo-${id}?auto=format&fit=crop&w=${width}&q=80`;
 
 export const IMAGES = {
-  campus: unsplash('1607237138185-eedd9c632b0b'),
-  campusClassic: unsplash('1562774053-701939374585'),
+  campus: '/images/nmtc-gate-1.jpeg',
+  campusClassic: '/images/nmtc-gate-1.jpeg',
   lab: unsplash('1582719471384-894fbb16e074'),
   imaging: unsplash('1666214280557-f1b5022eb634'),
   surgeons: unsplash('1579684385127-1ef15d508118'),
@@ -17,17 +17,17 @@ export const IMAGES = {
   clinician: unsplash('1532938911079-1b06ac7ceec7'),
   clinicianPhone: unsplash('1576091160399-112ba8d25d1d'),
   clinicianLaptop: unsplash('1576091160550-2173dba999ef'),
-  doctorPatient: unsplash('1581056771107-24ca5f033842'),
-  nurse: unsplash('1622253692010-333f2da6031d'),
-  doctor: unsplash('1612349317150-e413f6a5b16d'),
+  clinicalMedicine: '/images/nmtc-lab-2.jpeg',
+  nursing: '/images/nmtc-lab-1.jpeg',
+  principal: '/images/avatar.png',
   consultation: unsplash('1631217868264-e5b90bb7e133'),
   pharmacy: unsplash('1576671081837-49000212a370'),
   heartModel: unsplash('1530026405186-ed1f139313f8'),
   brainModel: unsplash('1559757148-5c350d0d3c56'),
   stethoscope: unsplash('1505751172876-fa1923c5c528'),
-  lecture: unsplash('1524178232363-1fb2b075b655'),
-  students: unsplash('1543269865-cbf427effbad'),
-  friends: unsplash('1529156069898-49953e39b3ac'),
+  lecture: '/images/nmtc-lab-2.jpeg',
+  students: '/images/nmtc-lab-2.jpeg',
+  friends: '/images/nmtc-1.jpeg',
   sunset: unsplash('1511632765486-a01980e01a18'),
   graduation: unsplash('1541339907198-e08756dedf3f'),
   library: unsplash('1507842217343-583bb7270b66'),
@@ -232,7 +232,7 @@ export const PROGRAMS: Program[] = [
     title: 'Diploma in Clinical Medicine & Surgery',
     level: 'diploma',
     icon: 'bi-heart-pulse',
-    image: IMAGES.doctorPatient,
+    image: IMAGES.clinicalMedicine,
     duration: '3 years',
     intakes: 'September',
     mode: 'Full-time',
@@ -245,7 +245,7 @@ export const PROGRAMS: Program[] = [
     title: 'Diploma in Community Health Nursing',
     level: 'diploma',
     icon: 'bi-bandaid',
-    image: IMAGES.nurse,
+    image: IMAGES.nursing,
     duration: '3 years',
     intakes: 'March · September',
     mode: 'Full-time',
@@ -385,10 +385,10 @@ export const STATS = [
 export const NEWS = [
   {
     date: '2026-10-21',
-    category: 'Research',
+    category: 'Intake',
     title: 'NMTC Received September Intake Students',
     excerpt: 'NMTC received successful applicants for September 2026 intake.',
-    image: IMAGES.lecture
+    image: IMAGES.study
   },
   {
     date: '2026-09-30',
