@@ -64,8 +64,8 @@ export const INSTITUTION = {
 /** External systems — set the real URLs here once they are available. */
 export const EXTERNAL_LINKS = {
   library: '#',
-  portal: '#',
-  applicationPortal: '#',
+  portal: 'https://staff.pamojaci.org/',
+  applicationPortal: 'https://apply.pamojaci.org/',
   studentPortal: '#',
   eLearning: '#'
 } as const;
