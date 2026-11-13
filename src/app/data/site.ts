@@ -39,7 +39,7 @@ export const IMAGES = {
 } as const;
 
 export const INSTITUTION = {
-  name: 'ST Joseph Nyabondo Medical Training College',
+  name: 'ST Joseph Nyabondo Med. Training College',
   shortName: 'NMTC',
   motto: 'Love and Serve',
   founded: 1959,
