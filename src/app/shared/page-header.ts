@@ -16,7 +16,7 @@ export interface Crumb {
       <div class="container position-relative">
         <nav aria-label="breadcrumb" class="page-header-crumbs">
           <ol class="breadcrumb mb-3">
-            <li class="breadcrumb-item"><a routerLink="/"><i class="bi bi-house-door me-1"></i>Home</a></li>
+            <li class="breadcrumb-item"><a routerLink="/"><i class="bi bi-house-door me-1" aria-hidden="true"></i>Home</a></li>
             @for (crumb of crumbs(); track crumb.label) {
               <li class="breadcrumb-item">
                 @if (crumb.route) {

@@ -2,10 +2,11 @@ import { Component, HostListener, signal } from '@angular/core';
 import { RouterOutlet } from '@angular/router';
 import { Footer } from './layout/footer';
 import { Header } from './layout/header';
+import { AccessibilityPanel } from './shared/accessibility-panel';
 
 @Component({
   selector: 'app-root',
-  imports: [RouterOutlet, Header, Footer],
+  imports: [RouterOutlet, Header, Footer, AccessibilityPanel],
   templateUrl: './app.html'
 })
 export class App {

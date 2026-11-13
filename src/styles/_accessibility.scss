@@ -1,0 +1,336 @@
+// =====================================================================
+// Accessibility panel (src/app/shared/accessibility-panel.ts) and the
+// display options it switches on. Each option is a class on <html>,
+// added by AccessibilityService.
+// =====================================================================
+
+// Sections with dark green backgrounds and white text.
+$a11y-dark-sections: '.topbar, .hero, .page-header, .stats-band, .cta-band, .countdown-band, .site-footer';
+
+// ---------- Floating button ----------
+.a11y-trigger {
+  position: fixed;
+  left: 1.5rem;
+  bottom: 1.5rem;
+  z-index: 1045;
+  display: grid;
+  place-items: center;
+  width: 3.25rem;
+  height: 3.25rem;
+  padding: 0;
+  border: 2px solid #fff;
+  border-radius: 50%;
+  background: $nmtc-green-deep;
+  color: #fff;
+  font-size: 1.7rem;
+  box-shadow: 0 12px 25px -8px rgba($nmtc-green-deep, 0.6);
+  transition: transform 0.3s $ease-out, background-color 0.3s;
+
+  &:hover {
+    background: $nmtc-green;
+    transform: scale(1.06);
+  }
+
+  // Small gold dot shows that some options are switched on.
+  &.is-customised::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    right: 0;
+    width: 0.8rem;
+    height: 0.8rem;
+    border: 2px solid #fff;
+    border-radius: 50%;
+    background: $nmtc-gold;
+  }
+
+  @include media-breakpoint-down(md) {
+    left: 1rem;
+    bottom: 1rem;
+  }
+}
+
+// ---------- Panel ----------
+.a11y-panel {
+  position: fixed;
+  left: 1.5rem;
+  bottom: 5.5rem;
+  z-index: 1045;
+  width: min(21rem, calc(100vw - 2rem));
+  max-height: calc(100vh - 7rem);
+  overflow-y: auto;
+  border-radius: $border-radius-lg;
+  background: #fff;
+  color: $nmtc-ink;
+  box-shadow: 0 25px 60px -15px rgba($nmtc-green-deep, 0.45);
+  animation: fade-up 0.3s $ease-out;
+
+  &:focus {
+    outline: none;
+  }
+
+  @include media-breakpoint-down(md) {
+    left: 1rem;
+    bottom: 5rem;
+  }
+}
+
+.a11y-panel-head {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 1rem 1.25rem;
+  background: $nmtc-green-deep;
+  border-radius: $border-radius-lg $border-radius-lg 0 0;
+  color: #fff;
+  --focus-ring-color: #{$nmtc-gold};
+
+  h2 {
+    display: flex;
+    align-items: center;
+    gap: 0.6rem;
+    margin: 0;
+    color: #fff;
+    font-family: $font-family-sans-serif;
+    font-size: 1.1rem;
+  }
+}
+
+.a11y-panel-body {
+  padding: 1.25rem;
+}
+
+.a11y-group-label {
+  display: block;
+  margin-bottom: 0.5rem;
+  font-size: 0.8rem;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: $body-secondary-color;
+}
+
+.a11y-sizes {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 0.5rem;
+  margin-bottom: 1rem;
+}
+
+.a11y-options {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 0.5rem;
+  margin-bottom: 1rem;
+}
+
+.a11y-size,
+.a11y-option {
+  border: 2px solid rgba($nmtc-green, 0.2);
+  border-radius: $border-radius;
+  background: $nmtc-green-light;
+  color: $nmtc-green-deep;
+  font-weight: 600;
+  transition: border-color 0.2s, background-color 0.2s, color 0.2s;
+
+  &:hover {
+    border-color: $nmtc-green;
+  }
+
+  &.is-active {
+    border-color: $nmtc-green-deep;
+    background: $nmtc-green-deep;
+    color: #fff;
+  }
+}
+
+.a11y-size {
+  height: 3rem;
+  font-family: $headings-font-family;
+  line-height: 1;
+}
+
+.a11y-option {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.35rem;
+  padding: 0.75rem 0.5rem;
+  font-size: 0.85rem;
+  line-height: 1.25;
+  text-align: center;
+
+  i {
+    font-size: 1.35rem;
+  }
+}
+
+.a11y-note {
+  margin: 0.75rem 0 0;
+  font-size: 0.8rem;
+  text-align: center;
+  color: $body-secondary-color;
+}
+
+// =====================================================================
+// Options
+// =====================================================================
+
+// ---------- Text size (all sizes on the site are in rem, so they all scale) ----------
+html.a11y-text-1 {
+  font-size: 112.5%;
+}
+
+html.a11y-text-2 {
+  font-size: 125%;
+}
+
+// The thin top bar has a fixed height (the sticky header relies on it), so with larger
+// text there is no room for everything. Keep the quick links; phone, email and hours
+// are still in the footer and on the Contact page.
+html:is(.a11y-text-1, .a11y-text-2) {
+  .topbar-contact {
+    display: none !important;
+  }
+
+  .topbar > .container {
+    justify-content: flex-end !important;
+  }
+
+  .topbar-links a {
+    white-space: nowrap;
+  }
+
+  // Make room in the main menu: keep the crest and "NMTC", drop the long college name.
+  .brand-full {
+    display: none !important;
+  }
+}
+
+// ---------- High contrast ----------
+html.a11y-contrast {
+  --bs-body-color: #000;
+  --bs-body-color-rgb: 0, 0, 0;
+  --bs-secondary-color: #000;
+  --bs-heading-color: #000;
+  --bs-link-color-rgb: 4, 40, 26;
+  --bs-link-hover-color-rgb: 0, 0, 0;
+
+  body {
+    color: #000;
+  }
+
+  // Grey and pale text on light backgrounds becomes black.
+  :is(p, li, small, time, figcaption, blockquote, dd, dt, label, h1, h2, h3, h4, h5, h6,
+    .text-body-secondary, .text-muted, .eyebrow) {
+    color: inherit !important;
+  }
+
+  // Dark sections become black with pure white text.
+  :is(#{$a11y-dark-sections}) {
+    background-color: #000 !important;
+    color: #fff !important;
+
+    // (Text inside buttons keeps the button's own colour.)
+    :is(p, li, small, time, figcaption, blockquote, dd, dt, label, h1, h2, h3, h4, h5, h6, span,
+      a:not(.btn), .text-white-50, .breadcrumb-item):not(.btn *) {
+      color: #fff !important;
+    }
+  }
+
+  // Darker image overlays so text on photos stays readable.
+  .hero-overlay,
+  .page-header::after,
+  .cta-band::before,
+  .stats-band::before {
+    background: rgba(#000, 0.85) !important;
+  }
+
+  .countdown-band {
+    background: #000 !important;
+  }
+
+  // Buttons: solid dark green with a clear border.
+  .btn-primary {
+    --bs-btn-bg: #{$nmtc-green-deep};
+    --bs-btn-border-color: #000;
+    --bs-btn-hover-bg: #000;
+    --bs-btn-hover-border-color: #000;
+  }
+
+  .btn-outline-primary {
+    --bs-btn-color: #000;
+    --bs-btn-border-color: #000;
+    border-width: 2px;
+  }
+
+  // Scrolling partner names are pale by design; make them solid.
+  .marquee-item {
+    color: #000;
+  }
+
+  .form-control,
+  .form-select {
+    border: 2px solid #000;
+  }
+}
+
+// ---------- Highlight links ----------
+html.a11y-links a:not(.btn) {
+  text-decoration: underline !important;
+  text-decoration-thickness: 2px !important;
+  text-underline-offset: 0.2em;
+  font-weight: 600;
+}
+
+// ---------- Dyslexia-friendly text ----------
+// A plain, evenly spaced font with wider letter, word and line spacing
+// (spacing values from WCAG 1.4.12 "Text Spacing").
+html.a11y-readable {
+  &,
+  * {
+    font-family: Verdana, Tahoma, 'Segoe UI', Arial, sans-serif !important;
+    letter-spacing: 0.06em !important;
+    word-spacing: 0.16em !important;
+    font-style: normal !important;
+  }
+
+  body,
+  p,
+  li,
+  blockquote {
+    line-height: 1.9 !important;
+  }
+
+  p {
+    margin-bottom: 1.5em;
+  }
+
+  // Headings in all capitals are harder to read for many dyslexic readers.
+  .eyebrow,
+  .footer-heading,
+  .a11y-group-label {
+    text-transform: none !important;
+  }
+}
+
+// ---------- Large cursor ----------
+$a11y-cursor-arrow: "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='44' height='44' viewBox='0 0 24 24'%3E%3Cpath d='M4 2l15 11.5-6.6.9 3.9 7.4-3 1.6-3.9-7.5L4 20.5z' fill='%23000' stroke='%23fff' stroke-width='1.5' stroke-linejoin='round'/%3E%3C/svg%3E";
+$a11y-cursor-pointer: "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='44' height='44' viewBox='0 0 24 24'%3E%3Cpath d='M4 2l15 11.5-6.6.9 3.9 7.4-3 1.6-3.9-7.5L4 20.5z' fill='%23c9a227' stroke='%23000' stroke-width='1.5' stroke-linejoin='round'/%3E%3C/svg%3E";
+
+html.a11y-cursor {
+  &,
+  * {
+    cursor: url($a11y-cursor-arrow) 7 4, auto !important;
+  }
+
+  // Gold arrow over anything clickable.
+  :is(a, button, [role='button'], label, select, summary, .carousel-indicators [data-bs-target]),
+  :is(a, button, [role='button'], label, select, summary) * {
+    cursor: url($a11y-cursor-pointer) 7 4, pointer !important;
+  }
+
+  :is(input:not([type='checkbox']):not([type='radio']), textarea) {
+    cursor: text !important;
+  }
+}

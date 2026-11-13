@@ -22,15 +22,15 @@
                 }
                 <div class="course-card-body">
                   <div class="d-flex align-items-start gap-3 mb-2">
-                    <span class="course-card-icon"><i class="bi" [class]="p.icon"></i></span>
+                    <span class="course-card-icon"><i class="bi" [class]="p.icon" aria-hidden="true"></i></span>
                     <h3>{{ p.title }}</h3>
                   </div>
                   <p>{{ p.summary }}</p>
 
                   <ul class="course-facts">
-                    <li><i class="bi bi-clock-history"></i><span>Duration</span><strong>{{ p.duration }}</strong></li>
-                    <li><i class="bi bi-calendar-event"></i><span>Intakes</span><strong>{{ p.intakes }}</strong></li>
-                    <li><i class="bi bi-person-workspace"></i><span>Mode</span><strong>{{ p.mode }}</strong></li>
+                    <li><i class="bi bi-clock-history" aria-hidden="true"></i><span>Duration</span><strong>{{ p.duration }}</strong></li>
+                    <li><i class="bi bi-calendar-event" aria-hidden="true"></i><span>Intakes</span><strong>{{ p.intakes }}</strong></li>
+                    <li><i class="bi bi-person-workspace" aria-hidden="true"></i><span>Mode</span><strong>{{ p.mode }}</strong></li>
                   </ul>
 
                   <details class="course-details">
@@ -52,7 +52,7 @@
 
                   <div class="course-actions">
                     <a class="btn btn-primary" [attr.href]="links.applicationPortal">Apply Now</a>
-                    <a class="btn btn-link link-arrow" routerLink="/contact">Enquire <i class="bi bi-arrow-right"></i></a>
+                    <a class="btn btn-link link-arrow" routerLink="/contact">Enquire <i class="bi bi-arrow-right" aria-hidden="true"></i></a>
                   </div>
                 </div>
               </article>
@@ -64,7 +64,7 @@
       <aside class="col-lg-4">
         <div class="sticky-lg-top sidebar-sticky">
           <div class="sidebar-card" appReveal="right">
-            <h3><i class="bi bi-grid me-2"></i>Academic Programs</h3>
+            <h3><i class="bi bi-grid me-2" aria-hidden="true"></i>Academic Programs</h3>
             <nav class="sidebar-nav">
               @for (l of levels; track l.key) {
                 <a [routerLink]="l.route" routerLinkActive="active">
@@ -75,18 +75,18 @@
           </div>
 
           <div class="sidebar-card sidebar-card-primary" appReveal="right" [revealDelay]="120">
-            <h3><i class="bi bi-calendar-check me-2"></i>January 2027 Intake</h3>
+            <h3><i class="bi bi-calendar-check me-2" aria-hidden="true"></i>January 2027 Intake</h3>
             <p>Applications are now open for all diploma and certificate programs.</p>
             <a class="btn btn-accent w-100 mb-2" [attr.href]="links.applicationPortal">Apply Online</a>
             <a class="btn btn-outline-light w-100" routerLink="/admissions/admission-process">How to Apply</a>
           </div>
 
           <div class="sidebar-card" appReveal="right" [revealDelay]="200">
-            <h3><i class="bi bi-question-circle me-2"></i>Need Guidance?</h3>
+            <h3><i class="bi bi-question-circle me-2" aria-hidden="true"></i>Need Guidance?</h3>
             <p class="small text-body-secondary">Our admissions team can help you choose the right program.</p>
             <ul class="list-unstyled contact-mini mb-0">
-              <li><i class="bi bi-telephone"></i><a [href]="'tel:' + institution.phone">{{ institution.phone }}</a></li>
-              <li><i class="bi bi-envelope"></i><a [href]="'mailto:' + institution.admissionsEmail">{{ institution.admissionsEmail }}</a></li>
+              <li><i class="bi bi-telephone" aria-hidden="true"></i><a [href]="'tel:' + institution.phone">{{ institution.phone }}</a></li>
+              <li><i class="bi bi-envelope" aria-hidden="true"></i><a [href]="'mailto:' + institution.admissionsEmail">{{ institution.admissionsEmail }}</a></li>
             </ul>
           </div>
         </div>

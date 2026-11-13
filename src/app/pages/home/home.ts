@@ -1,5 +1,5 @@
 import { DatePipe } from '@angular/common';
-import { AfterViewInit, Component, ElementRef, OnDestroy, viewChild } from '@angular/core';
+import { AfterViewInit, Component, ElementRef, OnDestroy, WritableSignal, effect, inject, signal, untracked, viewChild } from '@angular/core';
 import { RouterLink } from '@angular/router';
 import { Carousel } from 'bootstrap';
 import {
@@ -13,9 +13,12 @@ import {
   STATS,
   TESTIMONIALS
 } from '../../data/site';
+import { AccessibilityService } from '../../shared/accessibility';
 import { CounterDirective } from '../../shared/counter.directive';
 import { CtaBand } from '../../shared/cta-band';
 import { RevealDirective } from '../../shared/reveal.directive';
+
+type SliderName = 'hero' | 'testimonials';
 
 @Component({
   selector: 'app-home',
@@ -79,17 +82,64 @@ export class Home implements AfterViewInit, OnDestroy {
 
   private readonly heroCarousel = viewChild<ElementRef<HTMLElement>>('heroCarousel');
   private readonly testimonialCarousel = viewChild<ElementRef<HTMLElement>>('testimonialCarousel');
-  private carousels: Carousel[] = [];
+  private readonly carousels: Partial<Record<SliderName, Carousel>> = {};
+  private readonly intervals: Record<SliderName, number> = { hero: 7000, testimonials: 6000 };
+
+  /** Sliders start paused for visitors who asked for reduced motion (device setting or accessibility panel). */
+  private readonly a11y = inject(AccessibilityService);
+  private readonly reduceMotion = this.a11y.reduceMotion();
+  protected readonly playing: Record<SliderName, WritableSignal<boolean>> = {
+    hero: signal(!this.reduceMotion),
+    testimonials: signal(!this.reduceMotion)
+  };
+
+  protected readonly marqueePlaying = signal(!this.reduceMotion);
+
+  constructor() {
+    // Turning "Stop animations" on or off in the accessibility panel pauses or resumes every slider.
+    let first = true;
+    effect(() => {
+      const still = this.a11y.reduceMotion();
+      if (first) {
+        first = false;
+        return;
+      }
+      untracked(() => {
+        this.marqueePlaying.set(!still);
+        (['hero', 'testimonials'] as const).forEach((name) => {
+          this.playing[name].set(!still);
+          this.startSlider(name);
+        });
+      });
+    });
+  }
 
   ngAfterViewInit(): void {
     // Bootstrap only auto-starts carousels present at page load, so start them explicitly.
-    const hero = this.heroCarousel()?.nativeElement;
-    const testimonials = this.testimonialCarousel()?.nativeElement;
-    if (hero) this.carousels.push(new Carousel(hero, { interval: 7000, ride: 'carousel', pause: false }));
-    if (testimonials) this.carousels.push(new Carousel(testimonials, { interval: 6000, ride: 'carousel' }));
+    this.startSlider('hero');
+    this.startSlider('testimonials');
+  }
+
+  /** Pause or resume a slider (required so moving content can be stopped, WCAG 2.2.2). */
+  protected togglePlay(name: SliderName): void {
+    this.playing[name].update((on) => !on);
+    this.startSlider(name);
+  }
+
+  // Bootstrap restarts a slider after hover or arrow clicks whenever `ride` is set,
+  // so a paused slider is rebuilt with `ride: false` to keep it truly paused.
+  private startSlider(name: SliderName): void {
+    const el = (name === 'hero' ? this.heroCarousel() : this.testimonialCarousel())?.nativeElement;
+    if (!el) return;
+    this.carousels[name]?.dispose();
+    this.carousels[name] = new Carousel(el, {
+      interval: this.intervals[name],
+      ride: this.playing[name]() ? 'carousel' : false,
+      pause: 'hover'
+    });
   }
 
   ngOnDestroy(): void {
-    this.carousels.forEach((c) => c.dispose());
+    Object.values(this.carousels).forEach((c) => c?.dispose());
   }
 }

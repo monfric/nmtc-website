@@ -93,21 +93,42 @@
   }
 }
 
-@media (prefers-reduced-motion: reduce) {
-  html {
+// Calm, motion-free version of the site. Used for visitors whose device asks for reduced
+// motion, and for anyone who turns on "Stop animations" in the accessibility panel.
+@mixin calm-motion($root) {
+  #{$root} {
     scroll-behavior: auto;
   }
 
-  .reveal {
+  #{$root} .reveal {
     opacity: 1;
     transform: none;
     transition: none;
   }
 
-  *,
-  *::before,
-  *::after {
+  #{$root} *,
+  #{$root} *::before,
+  #{$root} *::after {
     animation-duration: 0.01ms !important;
     animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+
+  // Parallax backgrounds move against the scroll; keep them still.
+  // (!important because _layout.scss loads after this file.)
+  #{$root} .parallax {
+    background-attachment: scroll !important;
+  }
+
+  // Skip the slow "ken burns" zoom on hero and page-header images.
+  #{$root} .hero-bg,
+  #{$root} .page-header-bg {
+    animation: none !important;
   }
 }
+
+@media (prefers-reduced-motion: reduce) {
+  @include calm-motion('html');
+}
+
+@include calm-motion('html.a11y-no-motion');

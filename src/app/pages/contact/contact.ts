@@ -36,9 +36,11 @@ export class Contact {
     return c.invalid && (c.touched || c.dirty);
   }
 
-  protected submit(): void {
+  protected submit(formEl: HTMLFormElement): void {
     if (this.form.invalid) {
       this.form.markAllAsTouched();
+      // Move the cursor to the first field that needs fixing, so keyboard and screen reader users know where to go.
+      formEl.querySelector<HTMLElement>('.ng-invalid:not(form)')?.focus();
       return;
     }
     // TODO: send the enquiry to the college's backend or email service.

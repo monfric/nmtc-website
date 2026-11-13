@@ -31,12 +31,12 @@
       @for (r of resources; track r.title; let i = $index) {
         <div class="col-md-4" appReveal [revealDelay]="i * 120">
           <a class="resource-card" [attr.href]="r.href">
-            <i class="bi" [class]="r.icon"></i>
+            <i class="bi" [class]="r.icon" aria-hidden="true"></i>
             <div>
               <h3>{{ r.title }}</h3>
               <p>{{ r.text }}</p>
             </div>
-            <i class="bi bi-arrow-up-right resource-arrow"></i>
+            <i class="bi bi-arrow-up-right resource-arrow" aria-hidden="true"></i>
           </a>
         </div>
       }
@@ -54,7 +54,7 @@
       @for (p of pillars; track p.title; let i = $index) {
         <div class="col-md-6 col-lg-4" appReveal [revealDelay]="(i % 3) * 120">
           <div class="feature-card h-100">
-            <span class="feature-icon"><i class="bi" [class]="p.icon"></i></span>
+            <span class="feature-icon"><i class="bi" [class]="p.icon" aria-hidden="true"></i></span>
             <h3>{{ p.title }}</h3>
             <p>{{ p.text }}</p>
           </div>

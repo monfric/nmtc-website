@@ -6,7 +6,7 @@
     <div class="row g-4">
       <div class="col-lg-6" appReveal="left">
         <div class="statement-card">
-          <span class="statement-icon"><i class="bi bi-eye"></i></span>
+          <span class="statement-icon"><i class="bi bi-eye" aria-hidden="true"></i></span>
           <span class="eyebrow">Our Vision</span>
           <p class="statement-text">
             To be a model medical training college recognized both nationally and internationally.
@@ -15,7 +15,7 @@
       </div>
       <div class="col-lg-6" appReveal="right">
         <div class="statement-card statement-card-dark">
-          <span class="statement-icon"><i class="bi bi-bullseye"></i></span>
+          <span class="statement-icon"><i class="bi bi-bullseye" aria-hidden="true"></i></span>
           <span class="eyebrow eyebrow-light">Our Mission</span>
           <p class="statement-text">
             To provide a holistic Christian-based medical training and research by equipping the learners with the requisite knowledge, 
@@ -42,7 +42,7 @@
       @for (v of values; track v.title; let i = $index) {
         <div class="col-sm-6 col-lg-4" appReveal [revealDelay]="(i % 3) * 120">
           <div class="feature-card h-100">
-            <span class="feature-icon"><i class="bi" [class]="v.icon"></i></span>
+            <span class="feature-icon"><i class="bi" [class]="v.icon" aria-hidden="true"></i></span>
             <h3>{{ v.title }}</h3>
             <p>{{ v.text }}</p>
           </div>
@@ -76,7 +76,7 @@
 <section class="section bg-tint">
   <div class="container">
     <div class="quality-policy" appReveal="zoom">
-      <i class="bi bi-award"></i>
+      <i class="bi bi-award" aria-hidden="true"></i>
       <div>
         <h2 class="h3">Quality Policy Statement</h2>
         <p class="mb-0">

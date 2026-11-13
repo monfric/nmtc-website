@@ -12,6 +12,40 @@ main:focus {
   outline: none;
 }
 
+// Keyboard focus ring (shows for Tab navigation, not mouse clicks).
+// Dark green on light sections, gold on dark sections, so it is always visible.
+:root {
+  --focus-ring-color: #{$nmtc-green-deep};
+}
+
+.topbar,
+.hero,
+.page-header,
+.stats-band,
+.cta-band,
+.countdown-band,
+.site-footer {
+  --focus-ring-color: #{$nmtc-gold};
+}
+
+:focus-visible {
+  outline: 3px solid var(--focus-ring-color);
+  outline-offset: 3px;
+}
+
+// Bootstrap replaces the outline with a faint glow on buttons and fields; use the clear ring instead.
+.btn:focus-visible,
+.form-control:focus-visible,
+.form-select:focus-visible,
+.nav-link:focus-visible,
+.dropdown-item:focus-visible,
+.accordion-button:focus-visible,
+.navbar-toggler:focus-visible,
+.carousel-indicators [data-bs-target]:focus-visible {
+  outline: 3px solid var(--focus-ring-color);
+  outline-offset: 3px;
+}
+
 img {
   max-width: 100%;
 }

@@ -15,10 +15,10 @@ import { RevealDirective } from './reveal.directive';
         <p class="lead mx-auto mb-4 cta-band-text" appReveal [revealDelay]="200">{{ text() }}</p>
         <div class="d-flex flex-wrap gap-3 justify-content-center" appReveal="zoom" [revealDelay]="300">
           <a class="btn btn-accent btn-lg" [attr.href]="applyHref">
-            <i class="bi bi-pencil-square me-2"></i>Apply Now
+            <i class="bi bi-pencil-square me-2" aria-hidden="true"></i>Apply Now
           </a>
           <a class="btn btn-outline-light btn-lg" routerLink="/contact">
-            <i class="bi bi-chat-dots me-2"></i>Talk to Admissions
+            <i class="bi bi-chat-dots me-2" aria-hidden="true"></i>Talk to Admissions
           </a>
         </div>
       </div>

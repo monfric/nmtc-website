@@ -1,4 +1,5 @@
 import { Directive, ElementRef, OnDestroy, OnInit, inject, input } from '@angular/core';
+import { AccessibilityService } from './accessibility';
 
 /** Counts up from zero to the target value once the element scrolls into view. */
 @Directive({ selector: '[appCounter]' })
@@ -8,12 +9,12 @@ export class CounterDirective implements OnInit, OnDestroy {
   readonly counterDuration = input(2200);
 
   private readonly el = inject<ElementRef<HTMLElement>>(ElementRef).nativeElement;
+  private readonly a11y = inject(AccessibilityService);
   private observer?: IntersectionObserver;
   private frame = 0;
 
   ngOnInit(): void {
-    const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-    if (reduceMotion || typeof IntersectionObserver === 'undefined') {
+    if (this.a11y.reduceMotion() || typeof IntersectionObserver === 'undefined') {
       this.render(this.appCounter());
       return;
     }

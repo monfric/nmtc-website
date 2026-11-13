@@ -14,6 +14,20 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link rel="preconnect" href="https://images.unsplash.com">
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Playfair+Display:wght@600;700&display=swap" rel="stylesheet">
+  <script>
+    // Apply saved accessibility choices before the page draws, so text size or contrast never "jumps".
+    // Keep the class names in sync with src/app/shared/accessibility.ts.
+    try {
+      var a11y = JSON.parse(localStorage.getItem('nmtc-accessibility') || '{}');
+      var c = document.documentElement.classList;
+      if (a11y.textSize) c.add('a11y-text-' + a11y.textSize);
+      if (a11y.highContrast) c.add('a11y-contrast');
+      if (a11y.highlightLinks) c.add('a11y-links');
+      if (a11y.readableText) c.add('a11y-readable');
+      if (a11y.stopAnimations) c.add('a11y-no-motion');
+      if (a11y.largeCursor) c.add('a11y-cursor');
+    } catch (e) {}
+  </script>
 </head>
 <body>
   <app-root></app-root>

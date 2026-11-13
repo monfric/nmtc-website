@@ -28,8 +28,8 @@
   top: 0;
   z-index: 1030;
 
-  // The top bar scrolls away while the main navbar stays pinned.
-  @include media-breakpoint-up(lg) {
+  // The top bar (shown from 1200px) scrolls away while the main navbar stays pinned.
+  @include media-breakpoint-up(xl) {
     top: -$topbar-height;
   }
 }
@@ -156,7 +156,7 @@
     color: $nmtc-green;
   }
 
-  @include media-breakpoint-up(lg) {
+  @include media-breakpoint-up(xl) {
     &::after:not(.dropdown-toggle) {
       content: none;
     }
@@ -221,7 +221,7 @@
   }
 }
 
-@include media-breakpoint-up(lg) {
+@include media-breakpoint-up(xl) {
   // Open dropdowns on hover for pointer devices.
   .main-navbar .dropdown:hover > .dropdown-menu {
     display: block;
@@ -233,13 +233,29 @@
   }
 }
 
+// 1200–1399px: the full menu only just fits, so tighten the spacing a little.
+@include media-breakpoint-only(xl) {
+  .brand {
+    margin-right: 1rem;
+  }
+
+  .main-navbar .nav-link {
+    padding: 0.6rem 0.6rem !important;
+
+    &::before {
+      left: 0.6rem;
+      right: 0.6rem;
+    }
+  }
+}
+
 .btn-apply {
   padding: 0.55rem 1.1rem;
   font-size: 0.9rem;
   white-space: nowrap;
 }
 
-// Animated hamburger
+// Animated hamburger (shown below 1200px, see navbar-expand-xl in header.html)
 .navbar-toggler {
   border: 0;
   padding: 0.5rem;
@@ -275,7 +291,7 @@
   }
 }
 
-@include media-breakpoint-down(lg) {
+@include media-breakpoint-down(xl) {
   .main-navbar .navbar-collapse {
     max-height: calc(100vh - 80px);
     overflow-y: auto;

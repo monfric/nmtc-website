@@ -16,7 +16,7 @@
         <div class="col-md-6" appReveal [revealDelay]="(i % 2) * 120">
           <div class="affiliate-card">
             <div class="affiliate-card-head">
-              <span class="feature-icon"><i class="bi" [class]="group.icon"></i></span>
+              <span class="feature-icon"><i class="bi" [class]="group.icon" aria-hidden="true"></i></span>
               <div>
                 <h3>{{ group.category }}</h3>
                 <p>{{ group.description }}</p>
@@ -24,7 +24,7 @@
             </div>
             <ul class="affiliate-list">
               @for (item of group.items; track item) {
-                <li><i class="bi bi-check2-circle"></i>{{ item }}</li>
+                <li><i class="bi bi-check2-circle" aria-hidden="true"></i>{{ item }}</li>
               }
             </ul>
           </div>
@@ -44,7 +44,7 @@
       @for (b of benefits; track b.title; let i = $index) {
         <div class="col-sm-6 col-lg-3" appReveal [revealDelay]="i * 120">
           <div class="feature-card feature-card-dark h-100">
-            <span class="feature-icon"><i class="bi" [class]="b.icon"></i></span>
+            <span class="feature-icon"><i class="bi" [class]="b.icon" aria-hidden="true"></i></span>
             <h3>{{ b.title }}</h3>
             <p>{{ b.text }}</p>
           </div>

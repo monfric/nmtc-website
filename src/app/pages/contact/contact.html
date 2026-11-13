@@ -6,14 +6,14 @@
     <div class="row g-4 mb-5">
       <div class="col-md-6 col-lg-3" appReveal [revealDelay]="0">
         <div class="contact-card">
-          <i class="bi bi-geo-alt"></i>
+          <i class="bi bi-geo-alt" aria-hidden="true"></i>
           <h3>Visit Us</h3>
           <p>{{ institution.address }}<br>{{ institution.city }}</p>
         </div>
       </div>
       <div class="col-md-6 col-lg-3" appReveal [revealDelay]="100">
         <div class="contact-card">
-          <i class="bi bi-telephone"></i>
+          <i class="bi bi-telephone" aria-hidden="true"></i>
           <h3>Call Us</h3>
           <p><a [href]="'tel:' + institution.phone">{{ institution.phone }}</a><br>
             <a [href]="'tel:' + institution.phoneAlt">{{ institution.phoneAlt }}</a></p>
@@ -21,7 +21,7 @@
       </div>
       <div class="col-md-6 col-lg-3" appReveal [revealDelay]="200">
         <div class="contact-card">
-          <i class="bi bi-envelope"></i>
+          <i class="bi bi-envelope" aria-hidden="true"></i>
           <h3>Email Us</h3>
           <p><a [href]="'mailto:' + institution.email">{{ institution.email }}</a><br>
             <a [href]="'mailto:' + institution.admissionsEmail">{{ institution.admissionsEmail }}</a></p>
@@ -29,7 +29,7 @@
       </div>
       <div class="col-md-6 col-lg-3" appReveal [revealDelay]="300">
         <div class="contact-card">
-          <i class="bi bi-clock"></i>
+          <i class="bi bi-clock" aria-hidden="true"></i>
           <h3>Office Hours</h3>
           <p>{{ institution.hours }}</p>
         </div>
@@ -44,44 +44,49 @@
 
           @if (submitted()) {
             <div class="alert alert-success d-flex align-items-center gap-2" role="status">
-              <i class="bi bi-check-circle-fill fs-4"></i>
+              <i class="bi bi-check-circle-fill fs-4" aria-hidden="true"></i>
               <div>Thank you for contacting NMTC. Our team will respond within two working days.</div>
             </div>
           }
 
-          <form [formGroup]="form" (ngSubmit)="submit()" novalidate>
+          <form #contactForm [formGroup]="form" (ngSubmit)="submit(contactForm)" novalidate>
+            <p class="small text-body-secondary mb-3">Fields marked <span class="text-danger" aria-hidden="true">*</span> are required.</p>
             <div class="row g-3">
               <div class="col-md-6">
-                <label for="name" class="form-label">Full name <span class="text-danger">*</span></label>
-                <input id="name" class="form-control" formControlName="name" autocomplete="name" [class.is-invalid]="invalid('name')">
-                <div class="invalid-feedback">Please enter your full name.</div>
+                <label for="name" class="form-label">Full name <span class="text-danger" aria-hidden="true">*</span></label>
+                <input id="name" class="form-control" formControlName="name" autocomplete="name" [class.is-invalid]="invalid('name')" required
+                  [attr.aria-invalid]="invalid('name')" aria-describedby="name-error">
+                <div id="name-error" class="invalid-feedback">Please enter your full name.</div>
               </div>
               <div class="col-md-6">
-                <label for="email" class="form-label">Email address <span class="text-danger">*</span></label>
-                <input id="email" type="email" class="form-control" formControlName="email" autocomplete="email" [class.is-invalid]="invalid('email')">
-                <div class="invalid-feedback">Please enter a valid email address.</div>
+                <label for="email" class="form-label">Email address <span class="text-danger" aria-hidden="true">*</span></label>
+                <input id="email" type="email" class="form-control" formControlName="email" autocomplete="email" [class.is-invalid]="invalid('email')" required
+                  [attr.aria-invalid]="invalid('email')" aria-describedby="email-error">
+                <div id="email-error" class="invalid-feedback">Please enter a valid email address.</div>
               </div>
               <div class="col-md-6">
                 <label for="phone" class="form-label">Phone number</label>
                 <input id="phone" type="tel" class="form-control" formControlName="phone" autocomplete="tel">
               </div>
               <div class="col-md-6">
-                <label for="subject" class="form-label">Subject <span class="text-danger">*</span></label>
-                <select id="subject" class="form-select" formControlName="subject" [class.is-invalid]="invalid('subject')">
+                <label for="subject" class="form-label">Subject <span class="text-danger" aria-hidden="true">*</span></label>
+                <select id="subject" class="form-select" formControlName="subject" [class.is-invalid]="invalid('subject')" required
+                  [attr.aria-invalid]="invalid('subject')" aria-describedby="subject-error">
                   <option value="" disabled>Select a subject</option>
                   @for (s of subjects; track s) {
                     <option [value]="s">{{ s }}</option>
                   }
                 </select>
-                <div class="invalid-feedback">Please choose a subject.</div>
+                <div id="subject-error" class="invalid-feedback">Please choose a subject.</div>
               </div>
               <div class="col-12">
-                <label for="message" class="form-label">Message <span class="text-danger">*</span></label>
-                <textarea id="message" rows="5" class="form-control" formControlName="message" [class.is-invalid]="invalid('message')"></textarea>
-                <div class="invalid-feedback">Please enter a message of at least 10 characters.</div>
+                <label for="message" class="form-label">Message <span class="text-danger" aria-hidden="true">*</span></label>
+                <textarea id="message" rows="5" class="form-control" formControlName="message" [class.is-invalid]="invalid('message')" required
+                  [attr.aria-invalid]="invalid('message')" aria-describedby="message-error"></textarea>
+                <div id="message-error" class="invalid-feedback">Please enter a message of at least 10 characters.</div>
               </div>
               <div class="col-12">
-                <button type="submit" class="btn btn-primary btn-lg"><i class="bi bi-send me-2"></i>Send Message</button>
+                <button type="submit" class="btn btn-primary btn-lg"><i class="bi bi-send me-2" aria-hidden="true"></i>Send Message</button>
               </div>
             </div>
           </form>
@@ -93,7 +98,7 @@
         <ul class="list-unstyled department-list">
           @for (d of departments; track d.name) {
             <li>
-              <i class="bi" [class]="d.icon"></i>
+              <i class="bi" [class]="d.icon" aria-hidden="true"></i>
               <div>
                 <strong>{{ d.name }}</strong>
                 <a [href]="'mailto:' + d.email">{{ d.email }}</a>
@@ -103,15 +108,15 @@
         </ul>
 
         <div class="map-card">
-          <i class="bi bi-map"></i>
+          <i class="bi bi-map" aria-hidden="true"></i>
           <h3>Find Our Campus</h3>
           <p>{{ institution.address }}, {{ institution.city }}</p>
-          <a class="btn btn-outline-primary btn-sm" href="#"><i class="bi bi-signpost-2 me-1"></i>Get Directions</a>
+          <a class="btn btn-outline-primary btn-sm" href="#"><i class="bi bi-signpost-2 me-1" aria-hidden="true"></i>Get Directions</a>
         </div>
 
         <div class="footer-social social-dark mt-4">
           @for (s of institution.social; track s.label) {
-            <a [attr.href]="s.href" [attr.aria-label]="s.label"><i class="bi" [class]="s.icon"></i></a>
+            <a [attr.href]="s.href" [attr.aria-label]="s.label"><i class="bi" [class]="s.icon" aria-hidden="true"></i></a>
           }
         </div>
       </div>

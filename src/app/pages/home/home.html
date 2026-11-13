@@ -1,6 +1,7 @@
 <!-- Hero -->
 <section class="hero">
-  <div #heroCarousel id="heroCarousel" class="carousel slide carousel-fade h-100">
+  <div #heroCarousel id="heroCarousel" class="carousel slide carousel-fade h-100" role="region"
+    aria-roledescription="carousel" aria-label="Featured highlights">
     <div class="carousel-indicators">
       @for (slide of slides; track slide.title; let i = $index) {
         <button type="button" data-bs-target="#heroCarousel" [attr.data-bs-slide-to]="i" [class.active]="i === 0"
@@ -23,7 +24,7 @@
               <p class="hero-text">{{ slide.text }}</p>
               <div class="hero-actions">
                 <a class="btn btn-accent btn-lg" [attr.href]="links.applicationPortal">
-                  Apply Now <i class="bi bi-arrow-right ms-2"></i>
+                  Apply Now <i class="bi bi-arrow-right ms-2" aria-hidden="true"></i>
                 </a>
                 <a class="btn btn-outline-light btn-lg" routerLink="/academics/diploma-programs">Explore Programs</a>
               </div>
@@ -40,6 +41,10 @@
       <span class="carousel-control-next-icon" aria-hidden="true"></span>
       <span class="visually-hidden">Next</span>
     </button>
+    <button type="button" class="slider-toggle hero-slider-toggle" (click)="togglePlay('hero')"
+      [attr.aria-label]="playing.hero() ? 'Pause slideshow' : 'Play slideshow'">
+      <i class="bi" [class.bi-pause-fill]="playing.hero()" [class.bi-play-fill]="!playing.hero()" aria-hidden="true"></i>
+    </button>
   </div>
   <a class="scroll-cue" href="#welcome" aria-label="Scroll to content"><span></span></a>
 </section>
@@ -52,13 +57,13 @@
         <div class="col-6 col-lg-3" appReveal [revealDelay]="i * 100">
           @if (q.route) {
             <a class="quicklink" [routerLink]="q.route">
-              <i class="bi" [class]="q.icon"></i>
+              <i class="bi" [class]="q.icon" aria-hidden="true"></i>
               <h3>{{ q.title }}</h3>
               <p>{{ q.text }}</p>
             </a>
           } @else {
             <a class="quicklink" [attr.href]="q.href">
-              <i class="bi" [class]="q.icon"></i>
+              <i class="bi" [class]="q.icon" aria-hidden="true"></i>
               <h3>{{ q.title }}</h3>
               <p>{{ q.text }}</p>
             </a>
@@ -101,7 +106,7 @@
         </blockquote>
         <div class="d-flex flex-wrap gap-3">
           <a class="btn btn-primary btn-lg" routerLink="/about/vision-mission">About NMTC</a>
-          <a class="btn btn-link btn-lg link-arrow" routerLink="/about/history">Our History <i class="bi bi-arrow-right"></i></a>
+          <a class="btn btn-link btn-lg link-arrow" routerLink="/about/history">Our History <i class="bi bi-arrow-right" aria-hidden="true"></i></a>
         </div>
       </div>
     </div>
@@ -115,7 +120,7 @@
       @for (stat of stats; track stat.label; let i = $index) {
         <div class="col-6 col-lg-3" appReveal="zoom" [revealDelay]="i * 120">
           <div class="stat">
-            <i class="bi" [class]="stat.icon"></i>
+            <i class="bi" [class]="stat.icon" aria-hidden="true"></i>
             <span class="stat-value" [appCounter]="stat.value" [counterSuffix]="stat.suffix">0</span>
             <span class="stat-label">{{ stat.label }}</span>
           </div>
@@ -134,7 +139,7 @@
         <h2 class="section-title mb-0">Programs Designed for Professional Practice</h2>
       </div>
       <div class="col-lg-5 text-lg-end" appReveal [revealDelay]="100">
-        <a class="btn btn-outline-primary" routerLink="/academics/diploma-programs">View All Programs <i class="bi bi-arrow-right ms-1"></i></a>
+        <a class="btn btn-outline-primary" routerLink="/academics/diploma-programs">View All Programs <i class="bi bi-arrow-right ms-1" aria-hidden="true"></i></a>
       </div>
     </div>
     <div class="row g-4">
@@ -146,10 +151,10 @@
               <span class="program-card-badge">{{ program.duration }}</span>
             </div>
             <div class="program-card-body">
-              <span class="program-card-icon"><i class="bi" [class]="program.icon"></i></span>
+              <span class="program-card-icon"><i class="bi" [class]="program.icon" aria-hidden="true"></i></span>
               <h3>{{ program.title }}</h3>
               <p>{{ program.summary }}</p>
-              <a class="link-arrow" routerLink="/academics/diploma-programs">Learn more <i class="bi bi-arrow-right"></i></a>
+              <a class="link-arrow" routerLink="/academics/diploma-programs">Learn more <i class="bi bi-arrow-right" aria-hidden="true"></i></a>
             </div>
           </article>
         </div>
@@ -170,7 +175,7 @@
       @for (f of features; track f.title; let i = $index) {
         <div class="col-md-6 col-lg-4" appReveal [revealDelay]="(i % 3) * 120">
           <div class="feature-card">
-            <span class="feature-icon"><i class="bi" [class]="f.icon"></i></span>
+            <span class="feature-icon"><i class="bi" [class]="f.icon" aria-hidden="true"></i></span>
             <h3>{{ f.title }}</h3>
             <p>{{ f.text }}</p>
           </div>
@@ -196,7 +201,7 @@
             <div appReveal [revealDelay]="i * 150">
               <div class="step">
                 <span class="step-number">0{{ i + 1 }}</span>
-                <i class="bi step-icon" [class]="step.icon"></i>
+                <i class="bi step-icon" [class]="step.icon" aria-hidden="true"></i>
                 <h3>{{ step.title }}</h3>
                 <p>{{ step.text }}</p>
               </div>
@@ -226,10 +231,11 @@
                   <span class="news-card-category">{{ item.category }}</span>
                 </div>
                 <div class="news-card-body">
-                  <time class="news-card-date"><i class="bi bi-calendar3 me-1"></i>{{ item.date | date: 'longDate' }}</time>
+                  <time class="news-card-date"><i class="bi bi-calendar3 me-1" aria-hidden="true"></i>{{ item.date | date: 'longDate' }}</time>
                   <h3>{{ item.title }}</h3>
                   <p>{{ item.excerpt }}</p>
-                  <a class="link-arrow" href="#">Read more <i class="bi bi-arrow-right"></i></a>
+                  <a class="link-arrow" href="#">Read more<span class="visually-hidden"> about {{ item.title }}</span>
+                    <i class="bi bi-arrow-right" aria-hidden="true"></i></a>
                 </div>
               </article>
             </div>
@@ -238,7 +244,7 @@
       </div>
       <div class="col-lg-4">
         <div class="events-panel" appReveal="right">
-          <h2 class="h4 mb-4"><i class="bi bi-calendar-event me-2"></i>Upcoming Events</h2>
+          <h2 class="h4 mb-4"><i class="bi bi-calendar-event me-2" aria-hidden="true"></i>Upcoming Events</h2>
           <ul class="list-unstyled mb-4">
             @for (e of events; track e.title) {
               <li class="event-item">
@@ -248,7 +254,7 @@
                 </div>
                 <div>
                   <h3>{{ e.title }}</h3>
-                  <p><i class="bi bi-clock me-1"></i>{{ e.time }} · <i class="bi bi-geo-alt me-1"></i>{{ e.venue }}</p>
+                  <p><i class="bi bi-clock me-1" aria-hidden="true"></i>{{ e.time }} · <i class="bi bi-geo-alt me-1" aria-hidden="true"></i>{{ e.venue }}</p>
                 </div>
               </li>
             }
@@ -267,12 +273,13 @@
       <span class="eyebrow justify-content-center">Alumni Voices</span>
       <h2 class="section-title">Graduates Making a Difference</h2>
     </div>
-    <div #testimonialCarousel id="testimonialCarousel" class="carousel slide carousel-fade testimonial-carousel" appReveal="zoom">
+    <div #testimonialCarousel id="testimonialCarousel" class="carousel slide carousel-fade testimonial-carousel" appReveal="zoom"
+      role="region" aria-roledescription="carousel" aria-label="Alumni testimonials">
       <div class="carousel-inner">
         @for (t of testimonials; track t.name; let first = $first) {
           <div class="carousel-item" [class.active]="first">
             <figure class="testimonial">
-              <i class="bi bi-quote testimonial-mark"></i>
+              <i class="bi bi-quote testimonial-mark" aria-hidden="true"></i>
               <blockquote><p>{{ t.quote }}</p></blockquote>
               <figcaption>
                 <strong>{{ t.name }}</strong>
@@ -288,6 +295,10 @@
             [attr.aria-label]="'Testimonial ' + (i + 1)"></button>
         }
       </div>
+      <button type="button" class="slider-toggle testimonial-slider-toggle" (click)="togglePlay('testimonials')"
+        [attr.aria-label]="playing.testimonials() ? 'Pause testimonials' : 'Play testimonials'">
+        <i class="bi" [class.bi-pause-fill]="playing.testimonials()" [class.bi-play-fill]="!playing.testimonials()" aria-hidden="true"></i>
+      </button>
     </div>
   </div>
 </section>
@@ -297,16 +308,22 @@
   <div class="container">
     <p class="partners-label" appReveal="fade">In partnership with leading health institutions</p>
   </div>
-  <div class="marquee" aria-label="Partner institutions">
-    <div class="marquee-track">
+  <div class="marquee" role="group" aria-label="Partner institutions">
+    <div class="marquee-track" [class.is-paused]="!marqueePlaying()">
       @for (round of [0, 1]; track round) {
         @for (p of partners; track p.name) {
           <span class="marquee-item" [attr.aria-hidden]="round === 1 ? 'true' : null">
-            <i class="bi" [class]="p.icon"></i>{{ p.name }}
+            <i class="bi" [class]="p.icon" aria-hidden="true"></i>{{ p.name }}
           </span>
         }
       }
     </div>
+  </div>
+  <div class="text-center mt-3">
+    <button type="button" class="slider-toggle" (click)="marqueePlaying.set(!marqueePlaying())"
+      [attr.aria-label]="marqueePlaying() ? 'Pause scrolling partners' : 'Play scrolling partners'">
+      <i class="bi" [class.bi-pause-fill]="marqueePlaying()" [class.bi-play-fill]="!marqueePlaying()" aria-hidden="true"></i>
+    </button>
   </div>
 </section>
 
